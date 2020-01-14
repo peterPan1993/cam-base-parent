@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.dao.AssetBaseSupplierDAO">
+  <sql id="Base_Column_List">
+    supplier_id, supplier_name, supplier_phone, supplier_address, supplier_memo, can_use, 
+    create_time
+  </sql>
+
+  <insert id="save" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="supplierId" keyColumn="supplier_id">
+    insert into asset_base_supplier
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="supplierName != null">
+        supplier_name,
+      </if>
+      <if test="supplierPhone != null">
+        supplier_phone,
+      </if>
+      <if test="supplierAddress != null">
+        supplier_address,
+      </if>
+      <if test="supplierMemo != null">
+        supplier_memo,
+      </if>
+      <if test="canUse != null">
+        can_use,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="supplierName != null">
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierPhone != null">
+        #{supplierPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierAddress != null">
+        #{supplierAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierMemo != null">
+        #{supplierMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="canUse != null">
+        #{canUse,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateById">
+    update asset_base_supplier
+    <set>
+      <if test="map.supplierName != null">
+        supplier_name = #{map.supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.supplierPhone != null">
+        supplier_phone = #{map.supplierPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="map.supplierAddress != null">
+        supplier_address = #{map.supplierAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="map.supplierMemo != null">
+        supplier_memo = #{map.supplierMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.canUse != null">
+        can_use = #{map.canUse,jdbcType=TINYINT},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where supplier_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByIds">
+    update asset_base_supplier
+    <set>
+      <if test="map.supplierName != null">
+        supplier_name = #{map.supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.supplierPhone != null">
+        supplier_phone = #{map.supplierPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="map.supplierAddress != null">
+        supplier_address = #{map.supplierAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="map.supplierMemo != null">
+        supplier_memo = #{map.supplierMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.canUse != null">
+        can_use = #{map.canUse,jdbcType=TINYINT},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where supplier_id in
+    <foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="update">
+    update asset_base_supplier
+    <set>
+      <if test="map.supplierName != null">
+        supplier_name = #{map.supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.supplierPhone != null">
+        supplier_phone = #{map.supplierPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="map.supplierAddress != null">
+        supplier_address = #{map.supplierAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="map.supplierMemo != null">
+        supplier_memo = #{map.supplierMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.canUse != null">
+        can_use = #{map.canUse,jdbcType=TINYINT},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where 
+    <trim prefixOverrides="and">
+    	<if test="where.supplierId != null">
+        and supplier_id = #{where.supplierId,jdbcType=VARCHAR}
+      </if>
+    	<if test="where.supplierName != null">
+        and supplier_name = #{where.supplierName,jdbcType=VARCHAR}
+      </if>
+      <if test="where.supplierPhone != null">
+        and supplier_phone = #{where.supplierPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="where.supplierAddress != null">
+        and supplier_address = #{where.supplierAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="where.supplierMemo != null">
+        and supplier_memo = #{where.supplierMemo,jdbcType=VARCHAR}
+      </if>
+      <if test="where.canUse != null">
+        and can_use = #{where.canUse,jdbcType=TINYINT}
+      </if>
+      <if test="where.createTime != null">
+        and create_time = #{where.createTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </update>
+
+  <delete id="deleteById">
+  	delete from asset_base_supplier where supplier_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByIds">
+  	delete from asset_base_supplier where supplier_id in
+  	<foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </delete>
+  <delete id="delete">
+  	delete from asset_base_supplier where 
+    <trim prefixOverrides="and">
+    <if test="supplierId != null">
+        and supplier_id = #{supplierId,jdbcType=VARCHAR}
+      </if>
+    	<if test="supplierName != null">
+        and supplier_name = #{supplierName,jdbcType=VARCHAR}
+      </if>
+      <if test="supplierPhone != null">
+        and supplier_phone = #{supplierPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="supplierAddress != null">
+        and supplier_address = #{supplierAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="supplierMemo != null">
+        and supplier_memo = #{supplierMemo,jdbcType=VARCHAR}
+      </if>
+      <if test="canUse != null">
+        and can_use = #{canUse,jdbcType=TINYINT}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </delete>
+
+	<select id="list" resultType="java.util.HashMap">
+		select * from asset_base_supplier
+		<where>
+			<if test="supplierId != null">
+				and supplier_id = #{supplierId,jdbcType=VARCHAR}
+			</if>
+			<if test="supplierName != null">
+				and supplier_name = #{supplierName,jdbcType=VARCHAR}
+			</if>
+			<if test="likeSupplierName != null">
+				and supplier_name like concat('%', #{likeSupplierName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="supplierPhone != null">
+				and supplier_phone = #{supplierPhone,jdbcType=VARCHAR}
+			</if>
+			<if test="likeSupplierPhone != null">
+				and supplier_phone like concat('%', #{likeSupplierPhone,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="supplierAddress != null">
+				and supplier_address = #{supplierAddress,jdbcType=VARCHAR}
+			</if>
+			<if test="likeSupplierAddress != null">
+				and supplier_address like concat('%', #{likeSupplierAddress,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="supplierMemo != null">
+				and supplier_memo = #{supplierMemo,jdbcType=VARCHAR}
+			</if>
+			<if test="canUse != null">
+				and can_use = #{canUse,jdbcType=TINYINT}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+	</select>
+	<select id="count" resultType="java.lang.Integer">
+		select count(*) from asset_base_supplier
+		<where>
+			<if test="supplierId != null">
+				and supplier_id = #{supplierId,jdbcType=VARCHAR}
+			</if>
+			<if test="supplierName != null">
+				and supplier_name = #{supplierName,jdbcType=VARCHAR}
+			</if>
+			<if test="likeSupplierName != null">
+				and supplier_name like concat('%', #{likeSupplierName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="supplierPhone != null">
+				and supplier_phone = #{supplierPhone,jdbcType=VARCHAR}
+			</if>
+			<if test="likeSupplierPhone != null">
+				and supplier_phone like concat('%', #{likeSupplierPhone,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="supplierAddress != null">
+				and supplier_address = #{supplierAddress,jdbcType=VARCHAR}
+			</if>
+			<if test="likeSupplierAddress != null">
+				and supplier_address like concat('%', #{likeSupplierAddress,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="supplierMemo != null">
+				and supplier_memo = #{supplierMemo,jdbcType=VARCHAR}
+			</if>
+			<if test="canUse != null">
+				and can_use = #{canUse,jdbcType=TINYINT}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+	</select>
+	<select id="listWithOrder" resultType="java.util.HashMap">
+		select * from asset_base_supplier
+		<where>
+			<if test="map.supplierId != null">
+				and supplier_id = #{map.supplierId,jdbcType=VARCHAR}
+			</if>
+			<if test="map.supplierName != null">
+				and supplier_name = #{map.supplierName,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeSupplierName != null">
+				and supplier_name like concat('%', #{map.likeSupplierName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.supplierPhone != null">
+				and supplier_phone = #{map.supplierPhone,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeSupplierPhone != null">
+				and supplier_phone like concat('%', #{map.likeSupplierPhone,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.supplierAddress != null">
+				and supplier_address = #{map.supplierAddress,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeSupplierAddress != null">
+				and supplier_address like concat('%', #{map.likeSupplierAddress,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.supplierMemo != null">
+				and supplier_memo = #{map.supplierMemo,jdbcType=VARCHAR}
+			</if>
+			<if test="map.canUse != null">
+				and can_use = #{map.canUse,jdbcType=TINYINT}
+			</if>
+			<if test="map.createTime != null">
+				and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+	</select>
+	<select id="listPage" resultType="java.util.HashMap">
+		select * from asset_base_supplier
+		<where>
+			<if test="map.supplierId != null">
+				and supplier_id = #{map.supplierId,jdbcType=VARCHAR}
+			</if>
+			<if test="map.supplierName != null">
+				and supplier_name = #{map.supplierName,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeSupplierName != null">
+				and supplier_name like concat('%', #{map.likeSupplierName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.supplierPhone != null">
+				and supplier_phone = #{map.supplierPhone,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeSupplierPhone != null">
+				and supplier_phone like concat('%', #{map.likeSupplierPhone,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.supplierAddress != null">
+				and supplier_address = #{map.supplierAddress,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeSupplierAddress != null">
+				and supplier_address like concat('%', #{map.likeSupplierAddress,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.supplierMemo != null">
+				and supplier_memo = #{map.supplierMemo,jdbcType=VARCHAR}
+			</if>
+			<if test="map.canUse != null">
+				and can_use = #{map.canUse,jdbcType=TINYINT}
+			</if>
+			<if test="map.createTime != null">
+				and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		limit #{offset}, #{limit}
+	</select>
+	<select id="listPageWithOrder" resultType="java.util.HashMap">
+		select * from asset_base_supplier
+		<where>
+			<if test="map.supplierId != null">
+				and supplier_id = #{map.supplierId,jdbcType=VARCHAR}
+			</if>
+			<if test="map.supplierName != null">
+				and supplier_name = #{map.supplierName,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeSupplierName != null">
+				and supplier_name like concat('%', #{map.likeSupplierName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.supplierPhone != null">
+				and supplier_phone = #{map.supplierPhone,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeSupplierPhone != null">
+				and supplier_phone like concat('%', #{map.likeSupplierPhone,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.supplierAddress != null">
+				and supplier_address = #{map.supplierAddress,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeSupplierAddress != null">
+				and supplier_address like concat('%', #{map.likeSupplierAddress,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.supplierMemo != null">
+				and supplier_memo = #{map.supplierMemo,jdbcType=VARCHAR}
+			</if>
+			<if test="map.canUse != null">
+				and can_use = #{map.canUse,jdbcType=TINYINT}
+			</if>
+			<if test="map.createTime != null">
+				and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+		limit #{offset}, #{limit}
+	</select>
+
+</mapper>

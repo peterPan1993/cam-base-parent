@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.dao.AssetSoftwareDAO">
+  <sql id="Base_Column_List">
+    software_id, software_type_id, inte_id, soft_name, version, is_hide, is_install, 
+    install_date, create_time
+  </sql>
+
+  <insert id="save" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="softwareId" keyColumn="software_id">
+    insert into asset_software
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="softwareId != null">
+        software_id,
+      </if>
+      <if test="softwareTypeId != null">
+        software_type_id,
+      </if>
+      <if test="inteId != null">
+        inte_id,
+      </if>
+      <if test="softName != null">
+        soft_name,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="isHide != null">
+        is_hide,
+      </if>
+      <if test="isInstall != null">
+        is_install,
+      </if>
+      <if test="installDate != null">
+        install_date,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="softwareId != null">
+        #{softwareId,jdbcType=INTEGER},
+      </if>
+      <if test="softwareTypeId != null">
+        #{softwareTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="inteId != null">
+        #{inteId,jdbcType=VARCHAR},
+      </if>
+      <if test="softName != null">
+        #{softName,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="isHide != null">
+        #{isHide,jdbcType=TINYINT},
+      </if>
+      <if test="isInstall != null">
+        #{isInstall,jdbcType=TINYINT},
+      </if>
+      <if test="installDate != null">
+        #{installDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateById">
+    update asset_software
+    <set>
+      <if test="map.softwareTypeId != null">
+        software_type_id = #{map.softwareTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.inteId != null">
+        inte_id = #{map.inteId,jdbcType=VARCHAR},
+      </if>
+      <if test="map.softName != null">
+        soft_name = #{map.softName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.version != null">
+        version = #{map.version,jdbcType=VARCHAR},
+      </if>
+      <if test="map.isHide != null">
+        is_hide = #{map.isHide,jdbcType=TINYINT},
+      </if>
+      <if test="map.isInstall != null">
+        is_install = #{map.isInstall,jdbcType=TINYINT},
+      </if>
+      <if test="map.installDate != null">
+        install_date = #{map.installDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where software_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByIds">
+    update asset_software
+    <set>
+      <if test="map.softwareTypeId != null">
+        software_type_id = #{map.softwareTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.inteId != null">
+        inte_id = #{map.inteId,jdbcType=VARCHAR},
+      </if>
+      <if test="map.softName != null">
+        soft_name = #{map.softName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.version != null">
+        version = #{map.version,jdbcType=VARCHAR},
+      </if>
+      <if test="map.isHide != null">
+        is_hide = #{map.isHide,jdbcType=TINYINT},
+      </if>
+      <if test="map.isInstall != null">
+        is_install = #{map.isInstall,jdbcType=TINYINT},
+      </if>
+      <if test="map.installDate != null">
+        install_date = #{map.installDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where software_id in
+    <foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="update">
+    update asset_software
+    <set>
+      <if test="map.softwareTypeId != null">
+        software_type_id = #{map.softwareTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.inteId != null">
+        inte_id = #{map.inteId,jdbcType=VARCHAR},
+      </if>
+      <if test="map.softName != null">
+        soft_name = #{map.softName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.version != null">
+        version = #{map.version,jdbcType=VARCHAR},
+      </if>
+      <if test="map.isHide != null">
+        is_hide = #{map.isHide,jdbcType=TINYINT},
+      </if>
+      <if test="map.isInstall != null">
+        is_install = #{map.isInstall,jdbcType=TINYINT},
+      </if>
+      <if test="map.installDate != null">
+        install_date = #{map.installDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where 
+    <trim prefixOverrides="and">
+    <if test="where.softwareId != null">
+        and software_id = #{where.softwareId,jdbcType=INTEGER}
+      </if>
+      <if test="where.softwareTypeId != null">
+        and software_type_id = #{where.softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="where.inteId != null">
+        and inte_id = #{where.inteId,jdbcType=VARCHAR}
+      </if>
+      <if test="where.softName != null">
+        and soft_name = #{where.softName,jdbcType=VARCHAR}
+      </if>
+      <if test="where.version != null">
+        and version = #{where.version,jdbcType=VARCHAR}
+      </if>
+      <if test="where.isHide != null">
+        and is_hide = #{where.isHide,jdbcType=TINYINT}
+      </if>
+      <if test="where.isInstall != null">
+        and is_install = #{where.isInstall,jdbcType=TINYINT}
+      </if>
+      <if test="where.installDate != null">
+        and install_date = #{where.installDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="where.createTime != null">
+        and create_time = #{where.createTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </update>
+
+  <delete id="deleteById">
+  	delete from asset_software where software_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByIds">
+  	delete from asset_software where software_id in
+  	<foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </delete>
+  <delete id="delete">
+  	delete from asset_software where 
+    <trim prefixOverrides="and">
+    <if test="softwareId != null">
+        and software_id = #{softwareId,jdbcType=INTEGER}
+      </if>
+      <if test="softwareTypeId != null">
+        and software_type_id = #{softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="inteId != null">
+        and inte_id = #{inteId,jdbcType=VARCHAR}
+      </if>
+      <if test="softName != null">
+        and soft_name = #{softName,jdbcType=VARCHAR}
+      </if>
+      <if test="version != null">
+        and version = #{version,jdbcType=VARCHAR}
+      </if>
+      <if test="isHide != null">
+        and is_hide = #{isHide,jdbcType=TINYINT}
+      </if>
+      <if test="isInstall != null">
+        and is_install = #{isInstall,jdbcType=TINYINT}
+      </if>
+      <if test="installDate != null">
+        and install_date = #{installDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </delete>
+
+	<select id="list" resultType="java.util.HashMap">
+		select soft.*, sty.sign_name, sty.authorize_type_id, sty.license_time,
+	  		aty.authorize_name, aty.only_one, aty.need_count,
+	  		mo.mode_name, mo.need_authorize, att.attr_name, att.attr_type
+	  	from asset_software soft, asset_soft_type sty, asset_soft_authorize_type aty, asset_soft_mode mo, asset_soft_attr att
+	  	where soft.software_type_id = sty.software_type_id and sty.authorize_type_id = aty.authorize_type_id 
+	  		AND sty.mode_id = mo.mode_id AND sty.attr_id = att.attr_id
+	  		<if test="softwareId != null">
+        and software_id = #{softwareId,jdbcType=INTEGER}
+      </if>
+      <if test="softwareTypeId != null">
+        and software_type_id = #{softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="inteId != null">
+        and inte_id = #{inteId,jdbcType=VARCHAR}
+      </if>
+      <if test="softName != null">
+        and soft_name = #{softName,jdbcType=VARCHAR}
+      </if>
+      <if test="likeSoftName != null">
+        and soft_name like concat('%', #{likeSoftName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="version != null">
+        and version = #{version,jdbcType=VARCHAR}
+      </if>
+      <if test="isHide != null">
+        and is_hide = #{isHide,jdbcType=TINYINT}
+      </if>
+      <if test="isInstall != null">
+        and is_install = #{isInstall,jdbcType=TINYINT}
+      </if>
+      <if test="installDate != null">
+        and install_date = #{installDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+	</select>
+	<select id="count" resultType="java.lang.Integer">
+		select count(*)
+	  	from asset_software soft, asset_soft_type sty, asset_soft_authorize_type aty, asset_soft_mode mo, asset_soft_attr att
+	  	where soft.software_type_id = sty.software_type_id and sty.authorize_type_id = aty.authorize_type_id 
+	  		AND sty.mode_id = mo.mode_id AND sty.attr_id = att.attr_id
+	  		<if test="softwareId != null">
+        and software_id = #{softwareId,jdbcType=INTEGER}
+      </if>
+      <if test="softwareTypeId != null">
+        and software_type_id = #{softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="inteId != null">
+        and inte_id = #{inteId,jdbcType=VARCHAR}
+      </if>
+      <if test="softName != null">
+        and soft_name = #{softName,jdbcType=VARCHAR}
+      </if>
+      <if test="likeSoftName != null">
+        and soft_name like concat('%', #{likeSoftName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="version != null">
+        and version = #{version,jdbcType=VARCHAR}
+      </if>
+      <if test="isHide != null">
+        and is_hide = #{isHide,jdbcType=TINYINT}
+      </if>
+      <if test="isInstall != null">
+        and is_install = #{isInstall,jdbcType=TINYINT}
+      </if>
+      <if test="installDate != null">
+        and install_date = #{installDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+	</select>
+	<select id="listWithOrder" resultType="java.util.HashMap">
+		select soft.*, sty.sign_name, sty.authorize_type_id, sty.license_time,
+	  		aty.authorize_name, aty.only_one, aty.need_count,
+	  		mo.mode_name, mo.need_authorize, att.attr_name, att.attr_type
+	  	from asset_software soft, asset_soft_type sty, asset_soft_authorize_type aty, asset_soft_mode mo, asset_soft_attr att
+	  	where soft.software_type_id = sty.software_type_id and sty.authorize_type_id = aty.authorize_type_id 
+	  		AND sty.mode_id = mo.mode_id AND sty.attr_id = att.attr_id
+	  		<if test="map.softwareId != null">
+        and software_id = #{map.softwareId,jdbcType=INTEGER}
+      </if>
+      <if test="map.softwareTypeId != null">
+        and software_type_id = #{map.softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.inteId != null">
+        and inte_id = #{map.inteId,jdbcType=VARCHAR}
+      </if>
+      <if test="map.softName != null">
+        and soft_name = #{map.softName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeSoftName != null">
+        and soft_name like concat('%', #{map.likeSoftName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.version != null">
+        and version = #{map.version,jdbcType=VARCHAR}
+      </if>
+      <if test="map.isHide != null">
+        and is_hide = #{map.isHide,jdbcType=TINYINT}
+      </if>
+      <if test="map.isInstall != null">
+        and is_install = #{map.isInstall,jdbcType=TINYINT}
+      </if>
+      <if test="map.installDate != null">
+        and install_date = #{map.installDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.createTime != null">
+        and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+      </if>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+	</select>
+	<select id="listPage" resultType="java.util.HashMap">
+		select soft.*, sty.sign_name, sty.authorize_type_id, sty.license_time,
+	  		aty.authorize_name, aty.only_one, aty.need_count,
+	  		mo.mode_name, mo.need_authorize, att.attr_name, att.attr_type
+	  	from asset_software soft, asset_soft_type sty, asset_soft_authorize_type aty, asset_soft_mode mo, asset_soft_attr att
+	  	where soft.software_type_id = sty.software_type_id and sty.authorize_type_id = aty.authorize_type_id 
+	  		AND sty.mode_id = mo.mode_id AND sty.attr_id = att.attr_id
+	  		<if test="map.softwareId != null">
+        and software_id = #{map.softwareId,jdbcType=INTEGER}
+      </if>
+      <if test="map.softwareTypeId != null">
+        and software_type_id = #{map.softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.inteId != null">
+        and inte_id = #{map.inteId,jdbcType=VARCHAR}
+      </if>
+      <if test="map.softName != null">
+        and soft_name = #{map.softName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeSoftName != null">
+        and soft_name like concat('%', #{map.likeSoftName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.version != null">
+        and version = #{map.version,jdbcType=VARCHAR}
+      </if>
+      <if test="map.isHide != null">
+        and is_hide = #{map.isHide,jdbcType=TINYINT}
+      </if>
+      <if test="map.isInstall != null">
+        and is_install = #{map.isInstall,jdbcType=TINYINT}
+      </if>
+      <if test="map.installDate != null">
+        and install_date = #{map.installDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.createTime != null">
+        and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+      </if>
+		limit #{offset}, #{limit}
+	</select>
+	<select id="listPageWithOrder" resultType="java.util.HashMap">
+		select soft.*, sty.sign_name, sty.authorize_type_id, sty.license_time,
+	  		aty.authorize_name, aty.only_one, aty.need_count,
+	  		mo.mode_name, mo.need_authorize, att.attr_name, att.attr_type
+	  	from asset_software soft, asset_soft_type sty, asset_soft_authorize_type aty, asset_soft_mode mo, asset_soft_attr att
+	  	where soft.software_type_id = sty.software_type_id and sty.authorize_type_id = aty.authorize_type_id 
+	  		AND sty.mode_id = mo.mode_id AND sty.attr_id = att.attr_id
+	  		<if test="map.softwareId != null">
+        and software_id = #{map.softwareId,jdbcType=INTEGER}
+      </if>
+      <if test="map.softwareTypeId != null">
+        and software_type_id = #{map.softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.inteId != null">
+        and inte_id = #{map.inteId,jdbcType=VARCHAR}
+      </if>
+      <if test="map.softName != null">
+        and soft_name = #{map.softName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeSoftName != null">
+        and soft_name like concat('%', #{map.likeSoftName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.version != null">
+        and version = #{map.version,jdbcType=VARCHAR}
+      </if>
+      <if test="map.isHide != null">
+        and is_hide = #{map.isHide,jdbcType=TINYINT}
+      </if>
+      <if test="map.isInstall != null">
+        and is_install = #{map.isInstall,jdbcType=TINYINT}
+      </if>
+      <if test="map.installDate != null">
+        and install_date = #{map.installDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.createTime != null">
+        and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+      </if>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+		limit #{offset}, #{limit}
+	</select>
+
+</mapper>

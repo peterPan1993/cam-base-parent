@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.dao.AssetBaseSoftDAO">
+  <sql id="Base_Column_List">
+    own_id, asset_id, authorize_type_id, mode_id, attr_id, version, overdue_time, manufacturer, 
+    manufacturer_phone
+  </sql>
+
+  <insert id="save" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="ownId" keyColumn="own_id">
+    insert into asset_base_soft
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ownId != null">
+        own_id,
+      </if>
+      <if test="assetId != null">
+        asset_id,
+      </if>
+      <if test="authorizeTypeId != null">
+        authorize_type_id,
+      </if>
+      <if test="modeId != null">
+        mode_id,
+      </if>
+      <if test="attrId != null">
+        attr_id,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="overdueTime != null">
+        overdue_time,
+      </if>
+      <if test="manufacturer != null">
+        manufacturer,
+      </if>
+      <if test="manufacturerPhone != null">
+        manufacturer_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ownId != null">
+        #{ownId,jdbcType=INTEGER},
+      </if>
+      <if test="assetId != null">
+        #{assetId,jdbcType=INTEGER},
+      </if>
+      <if test="authorizeTypeId != null">
+        #{authorizeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="modeId != null">
+        #{modeId,jdbcType=INTEGER},
+      </if>
+      <if test="attrId != null">
+        #{attrId,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueTime != null">
+        #{overdueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manufacturer != null">
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerPhone != null">
+        #{manufacturerPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateById">
+    update asset_base_soft
+    <set>
+      <if test="map.authorizeTypeId != null">
+        authorize_type_id = #{map.authorizeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.modeId != null">
+        mode_id = #{map.modeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.attrId != null">
+        attr_id = #{map.attrId,jdbcType=INTEGER},
+      </if>
+      <if test="map.version != null">
+        version = #{map.version,jdbcType=VARCHAR},
+      </if>
+      <if test="map.overdueTime != null">
+        overdue_time = #{map.overdueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="map.manufacturer != null">
+        manufacturer = #{map.manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="map.manufacturerPhone != null">
+        manufacturer_phone = #{map.manufacturerPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where asset_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByIds">
+    update asset_base_soft
+    <set>
+      <if test="map.authorizeTypeId != null">
+        authorize_type_id = #{map.authorizeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.modeId != null">
+        mode_id = #{map.modeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.attrId != null">
+        attr_id = #{map.attrId,jdbcType=INTEGER},
+      </if>
+      <if test="map.version != null">
+        version = #{map.version,jdbcType=VARCHAR},
+      </if>
+      <if test="map.overdueTime != null">
+        overdue_time = #{map.overdueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="map.manufacturer != null">
+        manufacturer = #{map.manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="map.manufacturerPhone != null">
+        manufacturer_phone = #{map.manufacturerPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where asset_id in
+    <foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="update">
+    update asset_base_soft
+    <set>
+      <if test="map.authorizeTypeId != null">
+        authorize_type_id = #{map.authorizeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.modeId != null">
+        mode_id = #{map.modeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.attrId != null">
+        attr_id = #{map.attrId,jdbcType=INTEGER},
+      </if>
+      <if test="map.version != null">
+        version = #{map.version,jdbcType=VARCHAR},
+      </if>
+      <if test="map.overdueTime != null">
+        overdue_time = #{map.overdueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="map.manufacturer != null">
+        manufacturer = #{map.manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="map.manufacturerPhone != null">
+        manufacturer_phone = #{map.manufacturerPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where 
+	<trim prefixOverrides="and">
+	  <if test="where.assetId != null">
+        and asset_id = #{where.assetId,jdbcType=INTEGER}
+      </if>
+      <if test="where.authorizeTypeId != null">
+        and authorize_type_id = #{where.authorizeTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="where.modeId != null">
+        and mode_id = #{where.modeId,jdbcType=INTEGER}
+      </if>
+      <if test="where.attrId != null">
+        and attr_id = #{where.attrId,jdbcType=INTEGER}
+      </if>
+      <if test="where.version != null">
+        and version = #{where.version,jdbcType=VARCHAR}
+      </if>
+      <if test="where.overdueTime != null">
+        and overdue_time = #{where.overdueTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="where.manufacturer != null">
+        and manufacturer = #{where.manufacturer,jdbcType=VARCHAR}
+      </if>
+      <if test="where.manufacturerPhone != null">
+        and manufacturer_phone = #{where.manufacturerPhone,jdbcType=VARCHAR}
+      </if>
+	</trim>
+  </update>
+  
+  <delete id="deleteById">
+  	delete from asset_base_soft where asset_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByIds">
+  	delete from asset_base_soft where asset_id in
+  	<foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </delete>
+  <delete id="delete">
+  	delete from asset_base_soft where 
+  	<trim prefixOverrides="and">
+	  <if test="assetId != null">
+        and asset_id = #{assetId,jdbcType=INTEGER}
+      </if>
+      <if test="authorizeTypeId != null">
+        and authorize_type_id = #{authorizeTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="modeId != null">
+        and mode_id = #{modeId,jdbcType=INTEGER}
+      </if>
+      <if test="attrId != null">
+        and attr_id = #{attrId,jdbcType=INTEGER}
+      </if>
+      <if test="version != null">
+        and version = #{version,jdbcType=VARCHAR}
+      </if>
+      <if test="overdueTime != null">
+        and overdue_time = #{overdueTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="manufacturer != null">
+        and manufacturer = #{manufacturer,jdbcType=VARCHAR}
+      </if>
+      <if test="manufacturerPhone != null">
+        and manufacturer_phone = #{manufacturerPhone,jdbcType=VARCHAR}
+      </if>
+	</trim>
+  </delete>
+
+  <select id="list" resultType="java.util.HashMap">
+  	select ba.*, so.authorize_type_id, so.mode_id, so.attr_id, so.version,
+  		so.overdue_time, so.manufacturer, so.manufacturer_phone,
+  		su.supplier_name, su.supplier_phone, su.supplier_address, su.supplier_memo,
+  		ty.type_name, ty.type_memo, ty.type_case,
+  		aty.authorize_name, aty.only_one, aty.need_count,
+  		mo.mode_name, mo.need_authorize, att.attr_name, att.attr_type
+  	from asset_base_soft so left join asset_base ba on ba.asset_id = so.asset_id
+  		left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  		left join asset_soft_authorize_type aty on so.authorize_type_id = aty.authorize_type_id
+  		left join asset_soft_mode mo on so.mode_id = mo.mode_id
+  		left join asset_soft_attr att on so.attr_id = att.attr_id
+  	<where>
+  	  <if test="assetId != null">
+        and ba.asset_id = #{assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="supplierId != null">
+        and ba.supplier_id = #{supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="typeId != null">
+        and ba.type_id = #{typeId,jdbcType=INTEGER}
+      </if>
+      <if test="assetCase != null">
+        and ba.asset_case = #{assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="number != null">
+        and ba.`number` = #{number,jdbcType=VARCHAR}
+      </if>
+      <if test="likeNumber != null">
+        and ba.`number` like concat('%', #{likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="editNumber != null">
+        and ba.edit_number = #{editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="likeEditNumber != null">
+        and ba.edit_number like concat('%', #{likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="assetName != null">
+        and ba.asset_name = #{assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="likeAssetName != null">
+        and ba.asset_name like concat('%', #{likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="financeCoding != null">
+        and ba.finance_coding = #{financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="state != null">
+        and ba.`state` = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="unit != null">
+        and ba.unit = #{unit,jdbcType=VARCHAR}
+      </if>
+      <if test="assetCount != null">
+        and ba.asset_count = #{assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="price != null">
+        and ba.price = #{price,jdbcType=DOUBLE}
+      </if>
+      <if test="buyTime != null">
+        and ba.buy_time = #{buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="picture != null">
+        and ba.picture = #{picture,jdbcType=VARCHAR}
+      </if>
+      <if test="canUse != null">
+        and ba.can_use = #{canUse,jdbcType=TINYINT}
+      </if>
+      
+	      <if test="authorizeTypeId != null">
+	        and so.authorize_type_id = #{authorizeTypeId,jdbcType=INTEGER}
+	      </if>
+	      <if test="modeId != null">
+	        and so.mode_id = #{modeId,jdbcType=INTEGER}
+	      </if>
+	      <if test="attrId != null">
+	        and so.attr_id = #{attrId,jdbcType=INTEGER}
+	      </if>
+	      <if test="version != null">
+	        and so.version = #{version,jdbcType=VARCHAR}
+	      </if>
+	      <if test="overdueTime != null">
+	        and so.overdue_time = #{overdueTime,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="manufacturer != null">
+	        and so.manufacturer = #{manufacturer,jdbcType=VARCHAR}
+	      </if>
+	      <if test="manufacturerPhone != null">
+	        and so.manufacturer_phone = #{manufacturerPhone,jdbcType=VARCHAR}
+	      </if>
+	      </where>
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+  	select count(*)
+  	from asset_base_soft so left join asset_base ba on ba.asset_id = so.asset_id
+  		left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  		left join asset_soft_authorize_type aty on so.authorize_type_id = aty.authorize_type_id
+  		left join asset_soft_mode mo on so.mode_id = mo.mode_id
+  		left join asset_soft_attr att on so.attr_id = att.attr_id
+  	<where>
+  	  <if test="assetId != null">
+        and ba.asset_id = #{assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="supplierId != null">
+        and ba.supplier_id = #{supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="typeId != null">
+        and ba.type_id = #{typeId,jdbcType=INTEGER}
+      </if>
+      <if test="assetCase != null">
+        and ba.asset_case = #{assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="number != null">
+        and ba.`number` = #{number,jdbcType=VARCHAR}
+      </if>
+      <if test="likeNumber != null">
+        and ba.`number` like concat('%', #{likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="editNumber != null">
+        and ba.edit_number = #{editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="likeEditNumber != null">
+        and ba.edit_number like concat('%', #{likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="assetName != null">
+        and ba.asset_name = #{assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="likeAssetName != null">
+        and ba.asset_name like concat('%', #{likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="financeCoding != null">
+        and ba.finance_coding = #{financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="state != null">
+        and ba.`state` = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="unit != null">
+        and ba.unit = #{unit,jdbcType=VARCHAR}
+      </if>
+      <if test="assetCount != null">
+        and ba.asset_count = #{assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="price != null">
+        and ba.price = #{price,jdbcType=DOUBLE}
+      </if>
+      <if test="buyTime != null">
+        and ba.buy_time = #{buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="picture != null">
+        and ba.picture = #{picture,jdbcType=VARCHAR}
+      </if>
+      <if test="canUse != null">
+        and ba.can_use = #{canUse,jdbcType=TINYINT}
+      </if>
+      
+	      <if test="authorizeTypeId != null">
+	        and so.authorize_type_id = #{authorizeTypeId,jdbcType=INTEGER}
+	      </if>
+	      <if test="modeId != null">
+	        and so.mode_id = #{modeId,jdbcType=INTEGER}
+	      </if>
+	      <if test="attrId != null">
+	        and so.attr_id = #{attrId,jdbcType=INTEGER}
+	      </if>
+	      <if test="version != null">
+	        and so.version = #{version,jdbcType=VARCHAR}
+	      </if>
+	      <if test="overdueTime != null">
+	        and so.overdue_time = #{overdueTime,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="manufacturer != null">
+	        and so.manufacturer = #{manufacturer,jdbcType=VARCHAR}
+	      </if>
+	      <if test="manufacturerPhone != null">
+	        and so.manufacturer_phone = #{manufacturerPhone,jdbcType=VARCHAR}
+	      </if>
+	      </where>
+  </select>
+  <select id="listWithOrder" resultType="java.util.HashMap">
+  	select ba.*, so.authorize_type_id, so.mode_id, so.attr_id, so.version,
+  		so.overdue_time, so.manufacturer, so.manufacturer_phone,
+  		su.supplier_name, su.supplier_phone, su.supplier_address, su.supplier_memo,
+  		ty.type_name, ty.type_memo, ty.type_case,
+  		aty.authorize_name, aty.only_one, aty.need_count,
+  		mo.mode_name, mo.need_authorize, att.attr_name, att.attr_type
+  	from asset_base_soft so left join asset_base ba on ba.asset_id = so.asset_id
+  		left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  		left join asset_soft_authorize_type aty on so.authorize_type_id = aty.authorize_type_id
+  		left join asset_soft_mode mo on so.mode_id = mo.mode_id
+  		left join asset_soft_attr att on so.attr_id = att.attr_id
+  	<where>
+  	  <if test="map.assetId != null">
+        and ba.asset_id = #{map.assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="map.supplierId != null">
+        and ba.supplier_id = #{map.supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="map.typeId != null">
+        and ba.type_id = #{map.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.assetCase != null">
+        and ba.asset_case = #{map.assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="map.number != null">
+        and ba.`number` = #{map.number,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeNumber != null">
+        and ba.`number` like concat('%', #{map.likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.editNumber != null">
+        and ba.edit_number = #{map.editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeEditNumber != null">
+        and ba.edit_number like concat('%', #{map.likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.assetName != null">
+        and ba.asset_name = #{map.assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeAssetName != null">
+        and ba.asset_name like concat('%', #{map.likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.financeCoding != null">
+        and ba.finance_coding = #{map.financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{map.likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.state != null">
+        and ba.`state` = #{map.state,jdbcType=VARCHAR}
+      </if>
+      <if test="map.unit != null">
+        and ba.unit = #{map.unit,jdbcType=VARCHAR}
+      </if>
+      <if test="map.assetCount != null">
+        and ba.asset_count = #{map.assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="map.price != null">
+        and ba.price = #{map.price,jdbcType=DOUBLE}
+      </if>
+      <if test="map.buyTime != null">
+        and ba.buy_time = #{map.buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.picture != null">
+        and ba.picture = #{map.picture,jdbcType=VARCHAR}
+      </if>
+      <if test="map.canUse != null">
+        and ba.can_use = #{map.canUse,jdbcType=TINYINT}
+      </if>
+      
+	      <if test="map.authorizeTypeId != null">
+	        and so.authorize_type_id = #{map.authorizeTypeId,jdbcType=INTEGER}
+	      </if>
+	      <if test="map.modeId != null">
+	        and so.mode_id = #{map.modeId,jdbcType=INTEGER}
+	      </if>
+	      <if test="map.attrId != null">
+	        and so.attr_id = #{map.attrId,jdbcType=INTEGER}
+	      </if>
+	      <if test="map.version != null">
+	        and so.version = #{map.version,jdbcType=VARCHAR}
+	      </if>
+	      <if test="map.overdueTime != null">
+	        and so.overdue_time = #{map.overdueTime,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="map.manufacturer != null">
+	        and so.manufacturer = #{map.manufacturer,jdbcType=VARCHAR}
+	      </if>
+	      <if test="map.manufacturerPhone != null">
+	        and so.manufacturer_phone = #{map.manufacturerPhone,jdbcType=VARCHAR}
+	      </if>
+	      </where>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+  </select>
+  <select id="listPage" resultType="java.util.HashMap">
+  	select ba.*, so.authorize_type_id, so.mode_id, so.attr_id, so.version,
+  		so.overdue_time, so.manufacturer, so.manufacturer_phone,
+  		su.supplier_name, su.supplier_phone, su.supplier_address, su.supplier_memo,
+  		ty.type_name, ty.type_memo, ty.type_case,
+  		aty.authorize_name, aty.only_one, aty.need_count,
+  		mo.mode_name, mo.need_authorize, att.attr_name, att.attr_type
+  	from asset_base_soft so left join asset_base ba on ba.asset_id = so.asset_id
+  		left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  		left join asset_soft_authorize_type aty on so.authorize_type_id = aty.authorize_type_id
+  		left join asset_soft_mode mo on so.mode_id = mo.mode_id
+  		left join asset_soft_attr att on so.attr_id = att.attr_id
+  	<where>
+  	  <if test="map.assetId != null">
+        and ba.asset_id = #{map.assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="map.supplierId != null">
+        and ba.supplier_id = #{map.supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="map.typeId != null">
+        and ba.type_id = #{map.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.assetCase != null">
+        and ba.asset_case = #{map.assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="map.number != null">
+        and ba.`number` = #{map.number,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeNumber != null">
+        and ba.`number` like concat('%', #{map.likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.editNumber != null">
+        and ba.edit_number = #{map.editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeEditNumber != null">
+        and ba.edit_number like concat('%', #{map.likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.assetName != null">
+        and ba.asset_name = #{map.assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeAssetName != null">
+        and ba.asset_name like concat('%', #{map.likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.financeCoding != null">
+        and ba.finance_coding = #{map.financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{map.likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.state != null">
+        and ba.`state` = #{map.state,jdbcType=VARCHAR}
+      </if>
+      <if test="map.unit != null">
+        and ba.unit = #{map.unit,jdbcType=VARCHAR}
+      </if>
+      <if test="map.assetCount != null">
+        and ba.asset_count = #{map.assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="map.price != null">
+        and ba.price = #{map.price,jdbcType=DOUBLE}
+      </if>
+      <if test="map.buyTime != null">
+        and ba.buy_time = #{map.buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.picture != null">
+        and ba.picture = #{map.picture,jdbcType=VARCHAR}
+      </if>
+      <if test="map.canUse != null">
+        and ba.can_use = #{map.canUse,jdbcType=TINYINT}
+      </if>
+      
+	      <if test="map.authorizeTypeId != null">
+	        and so.authorize_type_id = #{map.authorizeTypeId,jdbcType=INTEGER}
+	      </if>
+	      <if test="map.modeId != null">
+	        and so.mode_id = #{map.modeId,jdbcType=INTEGER}
+	      </if>
+	      <if test="map.attrId != null">
+	        and so.attr_id = #{map.attrId,jdbcType=INTEGER}
+	      </if>
+	      <if test="map.version != null">
+	        and so.version = #{map.version,jdbcType=VARCHAR}
+	      </if>
+	      <if test="map.overdueTime != null">
+	        and so.overdue_time = #{map.overdueTime,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="map.manufacturer != null">
+	        and so.manufacturer = #{map.manufacturer,jdbcType=VARCHAR}
+	      </if>
+	      <if test="map.manufacturerPhone != null">
+	        and so.manufacturer_phone = #{map.manufacturerPhone,jdbcType=VARCHAR}
+	      </if>
+	      </where>
+		limit #{offset}, #{limit}
+  </select>
+  <select id="listPageWithOrder" resultType="java.util.HashMap">
+  	select ba.*, so.authorize_type_id, so.mode_id, so.attr_id, so.version,
+  		so.overdue_time, so.manufacturer, so.manufacturer_phone,
+  		su.supplier_name, su.supplier_phone, su.supplier_address, su.supplier_memo,
+  		ty.type_name, ty.type_memo, ty.type_case,
+  		aty.authorize_name, aty.only_one, aty.need_count,
+  		mo.mode_name, mo.need_authorize, att.attr_name, att.attr_type
+  	from asset_base_soft so left join asset_base ba on ba.asset_id = so.asset_id
+  		left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  		left join asset_soft_authorize_type aty on so.authorize_type_id = aty.authorize_type_id
+  		left join asset_soft_mode mo on so.mode_id = mo.mode_id
+  		left join asset_soft_attr att on so.attr_id = att.attr_id
+  	<where>
+  	  <if test="map.assetId != null">
+        and ba.asset_id = #{map.assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="map.supplierId != null">
+        and ba.supplier_id = #{map.supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="map.typeId != null">
+        and ba.type_id = #{map.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.assetCase != null">
+        and ba.asset_case = #{map.assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="map.number != null">
+        and ba.`number` = #{map.number,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeNumber != null">
+        and ba.`number` like concat('%', #{map.likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.editNumber != null">
+        and ba.edit_number = #{map.editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeEditNumber != null">
+        and ba.edit_number like concat('%', #{map.likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.assetName != null">
+        and ba.asset_name = #{map.assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeAssetName != null">
+        and ba.asset_name like concat('%', #{map.likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.financeCoding != null">
+        and ba.finance_coding = #{map.financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{map.likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.state != null">
+        and ba.`state` = #{map.state,jdbcType=VARCHAR}
+      </if>
+      <if test="map.unit != null">
+        and ba.unit = #{map.unit,jdbcType=VARCHAR}
+      </if>
+      <if test="map.assetCount != null">
+        and ba.asset_count = #{map.assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="map.price != null">
+        and ba.price = #{map.price,jdbcType=DOUBLE}
+      </if>
+      <if test="map.buyTime != null">
+        and ba.buy_time = #{map.buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.picture != null">
+        and ba.picture = #{map.picture,jdbcType=VARCHAR}
+      </if>
+      <if test="map.canUse != null">
+        and ba.can_use = #{map.canUse,jdbcType=TINYINT}
+      </if>
+      
+	      <if test="map.authorizeTypeId != null">
+	        and so.authorize_type_id = #{map.authorizeTypeId,jdbcType=INTEGER}
+	      </if>
+	      <if test="map.modeId != null">
+	        and so.mode_id = #{map.modeId,jdbcType=INTEGER}
+	      </if>
+	      <if test="map.attrId != null">
+	        and so.attr_id = #{map.attrId,jdbcType=INTEGER}
+	      </if>
+	      <if test="map.version != null">
+	        and so.version = #{map.version,jdbcType=VARCHAR}
+	      </if>
+	      <if test="map.overdueTime != null">
+	        and so.overdue_time = #{map.overdueTime,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="map.manufacturer != null">
+	        and so.manufacturer = #{map.manufacturer,jdbcType=VARCHAR}
+	      </if>
+	      <if test="map.manufacturerPhone != null">
+	        and so.manufacturer_phone = #{map.manufacturerPhone,jdbcType=VARCHAR}
+	      </if>
+	      </where>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+		limit #{offset}, #{limit}
+  </select>
+
+</mapper>

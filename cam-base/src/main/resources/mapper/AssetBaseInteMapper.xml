@@ -1,0 +1,895 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.dao.AssetBaseInteDAO">
+  <sql id="Base_Column_List">
+    own_id, asset_id, cpu_info, cpu_sn, memory_info, memory_sn, hard_disk_info, hard_disk_sn, 
+    mainboard_info, mainboard_sn, ip_addr, mac, display_card_info, os_desc, age_limit
+  </sql>
+
+  <insert id="save" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="ownId" keyColumn="own_id">
+    insert into asset_base_inte
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ownId != null">
+        own_id,
+      </if>
+      <if test="assetId != null">
+        asset_id,
+      </if>
+      <if test="cpuInfo != null">
+        cpu_info,
+      </if>
+      <if test="cpuSn != null">
+        cpu_sn,
+      </if>
+      <if test="memoryInfo != null">
+        memory_info,
+      </if>
+      <if test="memorySn != null">
+        memory_sn,
+      </if>
+      <if test="hardDiskInfo != null">
+        hard_disk_info,
+      </if>
+      <if test="hardDiskSn != null">
+        hard_disk_sn,
+      </if>
+      <if test="mainboardInfo != null">
+        mainboard_info,
+      </if>
+      <if test="mainboardSn != null">
+        mainboard_sn,
+      </if>
+      <if test="ipAddr != null">
+        ip_addr,
+      </if>
+      <if test="mac != null">
+        mac,
+      </if>
+      <if test="displayCardInfo != null">
+        display_card_info,
+      </if>
+      <if test="osDesc != null">
+        os_desc,
+      </if>
+      <if test="ageLimit != null">
+        age_limit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ownId != null">
+        #{ownId,jdbcType=INTEGER},
+      </if>
+      <if test="assetId != null">
+        #{assetId,jdbcType=INTEGER},
+      </if>
+      <if test="cpuInfo != null">
+        #{cpuInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cpuSn != null">
+        #{cpuSn,jdbcType=VARCHAR},
+      </if>
+      <if test="memoryInfo != null">
+        #{memoryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="memorySn != null">
+        #{memorySn,jdbcType=VARCHAR},
+      </if>
+      <if test="hardDiskInfo != null">
+        #{hardDiskInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="hardDiskSn != null">
+        #{hardDiskSn,jdbcType=VARCHAR},
+      </if>
+      <if test="mainboardInfo != null">
+        #{mainboardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="mainboardSn != null">
+        #{mainboardSn,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddr != null">
+        #{ipAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null">
+        #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="displayCardInfo != null">
+        #{displayCardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="osDesc != null">
+        #{osDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="ageLimit != null">
+        #{ageLimit,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateById">
+    update asset_base_inte
+    <set>
+      <if test="map.cpuInfo != null">
+        cpu_info = #{map.cpuInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.cpuSn != null">
+        cpu_sn = #{map.cpuSn,jdbcType=VARCHAR},
+      </if>
+      <if test="map.memoryInfo != null">
+        memory_info = #{map.memoryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.memorySn != null">
+        memory_sn = #{map.memorySn,jdbcType=VARCHAR},
+      </if>
+      <if test="map.hardDiskInfo != null">
+        hard_disk_info = #{map.hardDiskInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.hardDiskSn != null">
+        hard_disk_sn = #{map.hardDiskSn,jdbcType=VARCHAR},
+      </if>
+      <if test="map.mainboardInfo != null">
+        mainboard_info = #{map.mainboardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.mainboardSn != null">
+        mainboard_sn = #{map.mainboardSn,jdbcType=VARCHAR},
+      </if>
+      <if test="map.ipAddr != null">
+        ip_addr = #{map.ipAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="map.mac != null">
+        mac = #{map.mac,jdbcType=VARCHAR},
+      </if>
+      <if test="map.displayCardInfo != null">
+        display_card_info = #{map.displayCardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.osDesc != null">
+        os_desc = #{map.osDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="map.ageLimit != null">
+        age_limit = #{map.ageLimit,jdbcType=INTEGER},
+      </if>
+    </set>
+    where asset_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByIds">
+    update asset_base_inte
+    <set>
+      <if test="map.cpuInfo != null">
+        cpu_info = #{map.cpuInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.cpuSn != null">
+        cpu_sn = #{map.cpuSn,jdbcType=VARCHAR},
+      </if>
+      <if test="map.memoryInfo != null">
+        memory_info = #{map.memoryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.memorySn != null">
+        memory_sn = #{map.memorySn,jdbcType=VARCHAR},
+      </if>
+      <if test="map.hardDiskInfo != null">
+        hard_disk_info = #{map.hardDiskInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.hardDiskSn != null">
+        hard_disk_sn = #{map.hardDiskSn,jdbcType=VARCHAR},
+      </if>
+      <if test="map.mainboardInfo != null">
+        mainboard_info = #{map.mainboardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.mainboardSn != null">
+        mainboard_sn = #{map.mainboardSn,jdbcType=VARCHAR},
+      </if>
+      <if test="map.ipAddr != null">
+        ip_addr = #{map.ipAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="map.mac != null">
+        mac = #{map.mac,jdbcType=VARCHAR},
+      </if>
+      <if test="map.displayCardInfo != null">
+        display_card_info = #{map.displayCardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.osDesc != null">
+        os_desc = #{map.osDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="map.ageLimit != null">
+        age_limit = #{map.ageLimit,jdbcType=INTEGER},
+      </if>
+    </set>
+    where asset_id in
+    <foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="update">
+    update asset_base_inte
+    <set>
+      <if test="map.cpuInfo != null">
+        cpu_info = #{map.cpuInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.cpuSn != null">
+        cpu_sn = #{map.cpuSn,jdbcType=VARCHAR},
+      </if>
+      <if test="map.memoryInfo != null">
+        memory_info = #{map.memoryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.memorySn != null">
+        memory_sn = #{map.memorySn,jdbcType=VARCHAR},
+      </if>
+      <if test="map.hardDiskInfo != null">
+        hard_disk_info = #{map.hardDiskInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.hardDiskSn != null">
+        hard_disk_sn = #{map.hardDiskSn,jdbcType=VARCHAR},
+      </if>
+      <if test="map.mainboardInfo != null">
+        mainboard_info = #{map.mainboardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.mainboardSn != null">
+        mainboard_sn = #{map.mainboardSn,jdbcType=VARCHAR},
+      </if>
+      <if test="map.ipAddr != null">
+        ip_addr = #{map.ipAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="map.mac != null">
+        mac = #{map.mac,jdbcType=VARCHAR},
+      </if>
+      <if test="map.displayCardInfo != null">
+        display_card_info = #{map.displayCardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.osDesc != null">
+        os_desc = #{map.osDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="map.ageLimit != null">
+        age_limit = #{map.ageLimit,jdbcType=INTEGER},
+      </if>
+    </set>
+    where 
+    <trim prefixOverrides="and">
+    <if test="where.cpuInfo != null">
+        and cpu_info = #{where.cpuInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="where.cpuSn != null">
+        and cpu_sn = #{where.cpuSn,jdbcType=VARCHAR}
+      </if>
+      <if test="where.memoryInfo != null">
+        and memory_info = #{where.memoryInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="where.memorySn != null">
+        and memory_sn = #{where.memorySn,jdbcType=VARCHAR}
+      </if>
+      <if test="where.hardDiskInfo != null">
+        and hard_disk_info = #{where.hardDiskInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="where.hardDiskSn != null">
+        and hard_disk_sn = #{where.hardDiskSn,jdbcType=VARCHAR}
+      </if>
+      <if test="where.mainboardInfo != null">
+        and mainboard_info = #{where.mainboardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="where.mainboardSn != null">
+        and mainboard_sn = #{where.mainboardSn,jdbcType=VARCHAR}
+      </if>
+      <if test="where.ipAddr != null">
+        and ip_addr = #{where.ipAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="where.mac != null">
+        and mac = #{where.mac,jdbcType=VARCHAR}
+      </if>
+      <if test="where.displayCardInfo != null">
+        and display_card_info = #{where.displayCardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="where.osDesc != null">
+        and os_desc = #{where.osDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="where.ageLimit != null">
+        and age_limit = #{where.ageLimit,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </update>
+
+  <delete id="deleteById">
+  	delete from asset_base_inte where asset_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByIds">
+  	delete from asset_base_inte where asset_id in
+  	<foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </delete>
+  <delete id="delete">
+  	delete from asset_base_inte where
+  	<trim prefixOverrides="and">
+  	  <if test="cpuInfo != null">
+        and cpu_info = #{cpuInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="cpuSn != null">
+        and cpu_sn = #{cpuSn,jdbcType=VARCHAR}
+      </if>
+      <if test="memoryInfo != null">
+        and memory_info = #{memoryInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="memorySn != null">
+        and memory_sn = #{memorySn,jdbcType=VARCHAR}
+      </if>
+      <if test="hardDiskInfo != null">
+        and hard_disk_info = #{hardDiskInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="hardDiskSn != null">
+        and hard_disk_sn = #{hardDiskSn,jdbcType=VARCHAR}
+      </if>
+      <if test="mainboardInfo != null">
+        and mainboard_info = #{mainboardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="mainboardSn != null">
+        and mainboard_sn = #{mainboardSn,jdbcType=VARCHAR}
+      </if>
+      <if test="ipAddr != null">
+        and ip_addr = #{ipAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="mac != null">
+        and mac = #{mac,jdbcType=VARCHAR}
+      </if>
+      <if test="displayCardInfo != null">
+        and display_card_info = #{displayCardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="osDesc != null">
+        and os_desc = #{osDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="ageLimit != null">
+        and age_limit = #{ageLimit,jdbcType=INTEGER}
+      </if>
+  	</trim>
+  </delete>
+
+  <select id="list" resultType="java.util.HashMap">
+  	select ba.*, inte.cpu_info, inte.cpu_sn, inte.memory_info, inte.memory_sn,
+  		inte.hard_disk_info, inte.hard_disk_sn, inte.mainboard_info, inte.mainboard_sn,
+  		inte.ip_addr, inte.mac, inte.display_card_info, inte.os_desc, inte.age_limit,
+  		su.supplier_name, su.supplier_phone, su.supplier_address, su.supplier_memo,
+  		ty.type_name, ty.type_memo, ty.type_case
+  	from asset_base_inte inte left join asset_base ba on ba.asset_id = inte.asset_id
+  		left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  	<where>
+  	  <if test="assetId != null">
+        and ba.asset_id = #{assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="supplierId != null">
+        and ba.supplier_id = #{supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="typeId != null">
+        and ba.type_id = #{typeId,jdbcType=INTEGER}
+      </if>
+      <if test="assetCase != null">
+        and ba.asset_case = #{assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="number != null">
+        and ba.`number` = #{number,jdbcType=VARCHAR}
+      </if>
+      <if test="likeNumber != null">
+        and ba.`number` like concat('%', #{likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="editNumber != null">
+        and ba.edit_number = #{editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="likeEditNumber != null">
+        and ba.edit_number like concat('%', #{likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="assetName != null">
+        and ba.asset_name = #{assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="likeAssetName != null">
+        and ba.asset_name like concat('%', #{likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="financeCoding != null">
+        and ba.finance_coding = #{financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="state != null">
+        and ba.`state` = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="unit != null">
+        and ba.unit = #{unit,jdbcType=VARCHAR}
+      </if>
+      <if test="assetCount != null">
+        and ba.asset_count = #{assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="price != null">
+        and ba.price = #{price,jdbcType=DOUBLE}
+      </if>
+      <if test="buyTime != null">
+        and ba.buy_time = #{buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="picture != null">
+        and ba.picture = #{picture,jdbcType=VARCHAR}
+      </if>
+      <if test="canUse != null">
+        and ba.can_use = #{canUse,jdbcType=TINYINT}
+      </if>
+      
+        <if test="cpuInfo != null">
+        and inte.cpu_info = #{cpuInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="cpuSn != null">
+        and inte.cpu_sn = #{cpuSn,jdbcType=VARCHAR}
+      </if>
+      <if test="memoryInfo != null">
+        and inte.memory_info = #{memoryInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="memorySn != null">
+        and inte.memory_sn = #{memorySn,jdbcType=VARCHAR}
+      </if>
+      <if test="hardDiskInfo != null">
+        and inte.hard_disk_info = #{hardDiskInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="hardDiskSn != null">
+        and inte.hard_disk_sn = #{hardDiskSn,jdbcType=VARCHAR}
+      </if>
+      <if test="mainboardInfo != null">
+        and inte.mainboard_info = #{mainboardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="mainboardSn != null">
+        and inte.mainboard_sn = #{mainboardSn,jdbcType=VARCHAR}
+      </if>
+      <if test="ipAddr != null">
+        and inte.ip_addr = #{ipAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="mac != null">
+        and inte.mac = #{mac,jdbcType=VARCHAR}
+      </if>
+      <if test="displayCardInfo != null">
+        and inte.display_card_info = #{displayCardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="osDesc != null">
+        and inte.os_desc = #{osDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="ageLimit != null">
+        and inte.age_limit = #{ageLimit,jdbcType=INTEGER}
+      </if>
+      </where>
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+  	select count(*)
+  	from asset_base_inte inte left join asset_base ba on ba.asset_id = inte.asset_id
+  		left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  	<where>
+  	  <if test="assetId != null">
+        and ba.asset_id = #{assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="supplierId != null">
+        and ba.supplier_id = #{supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="typeId != null">
+        and ba.type_id = #{typeId,jdbcType=INTEGER}
+      </if>
+      <if test="assetCase != null">
+        and ba.asset_case = #{assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="number != null">
+        and ba.`number` = #{number,jdbcType=VARCHAR}
+      </if>
+      <if test="likeNumber != null">
+        and ba.`number` like concat('%', #{likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="editNumber != null">
+        and ba.edit_number = #{editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="likeEditNumber != null">
+        and ba.edit_number like concat('%', #{likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="assetName != null">
+        and ba.asset_name = #{assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="likeAssetName != null">
+        and ba.asset_name like concat('%', #{likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="financeCoding != null">
+        and ba.finance_coding = #{financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="state != null">
+        and ba.`state` = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="unit != null">
+        and ba.unit = #{unit,jdbcType=VARCHAR}
+      </if>
+      <if test="assetCount != null">
+        and ba.asset_count = #{assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="price != null">
+        and ba.price = #{price,jdbcType=DOUBLE}
+      </if>
+      <if test="buyTime != null">
+        and ba.buy_time = #{buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="picture != null">
+        and ba.picture = #{picture,jdbcType=VARCHAR}
+      </if>
+      <if test="canUse != null">
+        and ba.can_use = #{canUse,jdbcType=TINYINT}
+      </if>
+      
+        <if test="cpuInfo != null">
+        and inte.cpu_info = #{cpuInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="cpuSn != null">
+        and inte.cpu_sn = #{cpuSn,jdbcType=VARCHAR}
+      </if>
+      <if test="memoryInfo != null">
+        and inte.memory_info = #{memoryInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="memorySn != null">
+        and inte.memory_sn = #{memorySn,jdbcType=VARCHAR}
+      </if>
+      <if test="hardDiskInfo != null">
+        and inte.hard_disk_info = #{hardDiskInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="hardDiskSn != null">
+        and inte.hard_disk_sn = #{hardDiskSn,jdbcType=VARCHAR}
+      </if>
+      <if test="mainboardInfo != null">
+        and inte.mainboard_info = #{mainboardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="mainboardSn != null">
+        and inte.mainboard_sn = #{mainboardSn,jdbcType=VARCHAR}
+      </if>
+      <if test="ipAddr != null">
+        and inte.ip_addr = #{ipAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="mac != null">
+        and inte.mac = #{mac,jdbcType=VARCHAR}
+      </if>
+      <if test="displayCardInfo != null">
+        and inte.display_card_info = #{displayCardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="osDesc != null">
+        and inte.os_desc = #{osDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="ageLimit != null">
+        and inte.age_limit = #{ageLimit,jdbcType=INTEGER}
+      </if>
+      </where>
+  </select>
+  <select id="listWithOrder" resultType="java.util.HashMap">
+  	select ba.*, inte.cpu_info, inte.cpu_sn, inte.memory_info, inte.memory_sn,
+  		inte.hard_disk_info, inte.hard_disk_sn, inte.mainboard_info, inte.mainboard_sn,
+  		inte.ip_addr, inte.mac, inte.display_card_info, inte.os_desc, inte.age_limit,
+  		su.supplier_name, su.supplier_phone, su.supplier_address, su.supplier_memo,
+  		ty.type_name, ty.type_memo, ty.type_case
+  	from asset_base_inte inte left join asset_base ba on ba.asset_id = inte.asset_id
+  		left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  	<where>
+  	  <if test="map.assetId != null">
+        and ba.asset_id = #{map.assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="map.supplierId != null">
+        and ba.supplier_id = #{map.supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="map.typeId != null">
+        and ba.type_id = #{map.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.assetCase != null">
+        and ba.asset_case = #{map.assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="map.number != null">
+        and ba.`number` = #{map.number,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeNumber != null">
+        and ba.`number` like concat('%', #{map.likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.editNumber != null">
+        and ba.edit_number = #{map.editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeEditNumber != null">
+        and ba.edit_number like concat('%', #{map.likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.assetName != null">
+        and ba.asset_name = #{map.assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeAssetName != null">
+        and ba.asset_name like concat('%', #{map.likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.financeCoding != null">
+        and ba.finance_coding = #{map.financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{map.likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.state != null">
+        and ba.`state` = #{map.state,jdbcType=VARCHAR}
+      </if>
+      <if test="map.unit != null">
+        and ba.unit = #{map.unit,jdbcType=VARCHAR}
+      </if>
+      <if test="map.assetCount != null">
+        and ba.asset_count = #{map.assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="map.price != null">
+        and ba.price = #{map.price,jdbcType=DOUBLE}
+      </if>
+      <if test="map.buyTime != null">
+        and ba.buy_time = #{map.buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.picture != null">
+        and ba.picture = #{map.picture,jdbcType=VARCHAR}
+      </if>
+      <if test="map.canUse != null">
+        and ba.can_use = #{map.canUse,jdbcType=TINYINT}
+      </if>
+      
+        <if test="map.cpuInfo != null">
+        and inte.cpu_info = #{map.cpuInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.cpuSn != null">
+        and inte.cpu_sn = #{map.cpuSn,jdbcType=VARCHAR}
+      </if>
+      <if test="map.memoryInfo != null">
+        and inte.memory_info = #{map.memoryInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.memorySn != null">
+        and inte.memory_sn = #{map.memorySn,jdbcType=VARCHAR}
+      </if>
+      <if test="map.hardDiskInfo != null">
+        and inte.hard_disk_info = #{map.hardDiskInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.hardDiskSn != null">
+        and inte.hard_disk_sn = #{map.hardDiskSn,jdbcType=VARCHAR}
+      </if>
+      <if test="map.mainboardInfo != null">
+        and inte.mainboard_info = #{map.mainboardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.mainboardSn != null">
+        and inte.mainboard_sn = #{map.mainboardSn,jdbcType=VARCHAR}
+      </if>
+      <if test="map.ipAddr != null">
+        and inte.ip_addr = #{map.ipAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="map.mac != null">
+        and inte.mac = #{map.mac,jdbcType=VARCHAR}
+      </if>
+      <if test="map.displayCardInfo != null">
+        and inte.display_card_info = #{map.displayCardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.osDesc != null">
+        and inte.os_desc = #{map.osDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="map.ageLimit != null">
+        and inte.age_limit = #{map.ageLimit,jdbcType=INTEGER}
+      </if>
+      </where>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+  </select>
+  <select id="listPage" resultType="java.util.HashMap">
+  	select ba.*, inte.cpu_info, inte.cpu_sn, inte.memory_info, inte.memory_sn,
+  		inte.hard_disk_info, inte.hard_disk_sn, inte.mainboard_info, inte.mainboard_sn,
+  		inte.ip_addr, inte.mac, inte.display_card_info, inte.os_desc, inte.age_limit,
+  		su.supplier_name, su.supplier_phone, su.supplier_address, su.supplier_memo,
+  		ty.type_name, ty.type_memo, ty.type_case
+  	from asset_base_inte inte left join asset_base ba on ba.asset_id = inte.asset_id
+  		left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  	<where>
+  	  <if test="map.assetId != null">
+        and ba.asset_id = #{map.assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="map.supplierId != null">
+        and ba.supplier_id = #{map.supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="map.typeId != null">
+        and ba.type_id = #{map.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.assetCase != null">
+        and ba.asset_case = #{map.assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="map.number != null">
+        and ba.`number` = #{map.number,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeNumber != null">
+        and ba.`number` like concat('%', #{map.likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.editNumber != null">
+        and ba.edit_number = #{map.editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeEditNumber != null">
+        and ba.edit_number like concat('%', #{map.likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.assetName != null">
+        and ba.asset_name = #{map.assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeAssetName != null">
+        and ba.asset_name like concat('%', #{map.likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.financeCoding != null">
+        and ba.finance_coding = #{map.financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{map.likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.state != null">
+        and ba.`state` = #{map.state,jdbcType=VARCHAR}
+      </if>
+      <if test="map.unit != null">
+        and ba.unit = #{map.unit,jdbcType=VARCHAR}
+      </if>
+      <if test="map.assetCount != null">
+        and ba.asset_count = #{map.assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="map.price != null">
+        and ba.price = #{map.price,jdbcType=DOUBLE}
+      </if>
+      <if test="map.buyTime != null">
+        and ba.buy_time = #{map.buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.picture != null">
+        and ba.picture = #{map.picture,jdbcType=VARCHAR}
+      </if>
+      <if test="map.canUse != null">
+        and ba.can_use = #{map.canUse,jdbcType=TINYINT}
+      </if>
+      
+        <if test="map.cpuInfo != null">
+        and inte.cpu_info = #{map.cpuInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.cpuSn != null">
+        and inte.cpu_sn = #{map.cpuSn,jdbcType=VARCHAR}
+      </if>
+      <if test="map.memoryInfo != null">
+        and inte.memory_info = #{map.memoryInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.memorySn != null">
+        and inte.memory_sn = #{map.memorySn,jdbcType=VARCHAR}
+      </if>
+      <if test="map.hardDiskInfo != null">
+        and inte.hard_disk_info = #{map.hardDiskInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.hardDiskSn != null">
+        and inte.hard_disk_sn = #{map.hardDiskSn,jdbcType=VARCHAR}
+      </if>
+      <if test="map.mainboardInfo != null">
+        and inte.mainboard_info = #{map.mainboardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.mainboardSn != null">
+        and inte.mainboard_sn = #{map.mainboardSn,jdbcType=VARCHAR}
+      </if>
+      <if test="map.ipAddr != null">
+        and inte.ip_addr = #{map.ipAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="map.mac != null">
+        and inte.mac = #{map.mac,jdbcType=VARCHAR}
+      </if>
+      <if test="map.displayCardInfo != null">
+        and inte.display_card_info = #{map.displayCardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.osDesc != null">
+        and inte.os_desc = #{map.osDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="map.ageLimit != null">
+        and inte.age_limit = #{map.ageLimit,jdbcType=INTEGER}
+      </if>
+      </where>
+		limit #{offset}, #{limit}
+  </select>
+  <select id="listPageWithOrder" resultType="java.util.HashMap">
+  	select ba.*, inte.cpu_info, inte.cpu_sn, inte.memory_info, inte.memory_sn,
+  		inte.hard_disk_info, inte.hard_disk_sn, inte.mainboard_info, inte.mainboard_sn,
+  		inte.ip_addr, inte.mac, inte.display_card_info, inte.os_desc, inte.age_limit,
+  		su.supplier_name, su.supplier_phone, su.supplier_address, su.supplier_memo,
+  		ty.type_name, ty.type_memo, ty.type_case
+  	from asset_base_inte inte left join asset_base ba on ba.asset_id = inte.asset_id
+  		left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  	<where>
+  	  <if test="map.assetId != null">
+        and ba.asset_id = #{map.assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="map.supplierId != null">
+        and ba.supplier_id = #{map.supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="map.typeId != null">
+        and ba.type_id = #{map.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.assetCase != null">
+        and ba.asset_case = #{map.assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="map.number != null">
+        and ba.`number` = #{map.number,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeNumber != null">
+        and ba.`number` like concat('%', #{map.likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.editNumber != null">
+        and ba.edit_number = #{map.editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeEditNumber != null">
+        and ba.edit_number like concat('%', #{map.likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.assetName != null">
+        and ba.asset_name = #{map.assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeAssetName != null">
+        and ba.asset_name like concat('%', #{map.likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.financeCoding != null">
+        and ba.finance_coding = #{map.financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{map.likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.state != null">
+        and ba.`state` = #{map.state,jdbcType=VARCHAR}
+      </if>
+      <if test="map.unit != null">
+        and ba.unit = #{map.unit,jdbcType=VARCHAR}
+      </if>
+      <if test="map.assetCount != null">
+        and ba.asset_count = #{map.assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="map.price != null">
+        and ba.price = #{map.price,jdbcType=DOUBLE}
+      </if>
+      <if test="map.buyTime != null">
+        and ba.buy_time = #{map.buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.picture != null">
+        and ba.picture = #{map.picture,jdbcType=VARCHAR}
+      </if>
+      <if test="map.canUse != null">
+        and ba.can_use = #{map.canUse,jdbcType=TINYINT}
+      </if>
+      
+        <if test="map.cpuInfo != null">
+        and inte.cpu_info = #{map.cpuInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.cpuSn != null">
+        and inte.cpu_sn = #{map.cpuSn,jdbcType=VARCHAR}
+      </if>
+      <if test="map.memoryInfo != null">
+        and inte.memory_info = #{map.memoryInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.memorySn != null">
+        and inte.memory_sn = #{map.memorySn,jdbcType=VARCHAR}
+      </if>
+      <if test="map.hardDiskInfo != null">
+        and inte.hard_disk_info = #{map.hardDiskInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.hardDiskSn != null">
+        and inte.hard_disk_sn = #{map.hardDiskSn,jdbcType=VARCHAR}
+      </if>
+      <if test="map.mainboardInfo != null">
+        and inte.mainboard_info = #{map.mainboardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.mainboardSn != null">
+        and inte.mainboard_sn = #{map.mainboardSn,jdbcType=VARCHAR}
+      </if>
+      <if test="map.ipAddr != null">
+        and inte.ip_addr = #{map.ipAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="map.mac != null">
+        and inte.mac = #{map.mac,jdbcType=VARCHAR}
+      </if>
+      <if test="map.displayCardInfo != null">
+        and inte.display_card_info = #{map.displayCardInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="map.osDesc != null">
+        and inte.os_desc = #{map.osDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="map.ageLimit != null">
+        and inte.age_limit = #{map.ageLimit,jdbcType=INTEGER}
+      </if>
+      </where>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+		limit #{offset}, #{limit}
+  </select>
+
+
+
+</mapper>

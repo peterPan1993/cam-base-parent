@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.dao.AssetSoftTypeDAO">
+  <sql id="Base_Column_List">
+    software_type_id, mode_id, attr_id, sign_name, version, manufacturer, manufacturer_phone, 
+    authorize_type_id, license_time, create_time, is_hide, authorize_count, software_type_num
+  </sql>
+
+  <insert id="save" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="softwareTypeId" keyColumn="software_type_id">
+    insert into asset_soft_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="softwareTypeId != null">
+        software_type_id,
+      </if>
+      <if test="modeId != null">
+        mode_id,
+      </if>
+      <if test="attrId != null">
+        attr_id,
+      </if>
+      <if test="signName != null">
+        sign_name,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="manufacturer != null">
+        manufacturer,
+      </if>
+      <if test="manufacturerPhone != null">
+        manufacturer_phone,
+      </if>
+      <if test="authorizeTypeId != null">
+        authorize_type_id,
+      </if>
+      <if test="licenseTime != null">
+        license_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isHide != null">
+        is_hide,
+      </if>
+      <if test="authorizeCount != null">
+        authorize_count,
+      </if>
+      <if test="softwareTypeNum != null">
+        software_type_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="softwareTypeId != null">
+        #{softwareTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="modeId != null">
+        #{modeId,jdbcType=INTEGER},
+      </if>
+      <if test="attrId != null">
+        #{attrId,jdbcType=INTEGER},
+      </if>
+      <if test="signName != null">
+        #{signName,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerPhone != null">
+        #{manufacturerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizeTypeId != null">
+        #{authorizeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="licenseTime != null">
+        #{licenseTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isHide != null">
+        #{isHide,jdbcType=TINYINT},
+      </if>
+      <if test="authorizeCount != null">
+        #{authorizeCount,jdbcType=INTEGER},
+      </if>
+      <if test="softwareTypeNum != null">
+        #{softwareTypeNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateById">
+    update asset_soft_type
+    <set>
+      <if test="map.modeId != null">
+        mode_id = #{map.modeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.attrId != null">
+        attr_id = #{map.attrId,jdbcType=INTEGER},
+      </if>
+      <if test="map.signName != null">
+        sign_name = #{map.signName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.version != null">
+        version = #{map.version,jdbcType=VARCHAR},
+      </if>
+      <if test="map.manufacturer != null">
+        manufacturer = #{map.manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="map.manufacturerPhone != null">
+        manufacturer_phone = #{map.manufacturerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="map.authorizeTypeId != null">
+        authorize_type_id = #{map.authorizeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.licenseTime != null">
+        license_time = #{map.licenseTime,jdbcType=DATE},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="map.isHide != null">
+        is_hide = #{map.isHide,jdbcType=TINYINT},
+      </if>
+      <if test="map.authorizeCount != null">
+        authorize_count = #{map.authorizeCount,jdbcType=INTEGER},
+      </if>
+      <if test="map.softwareTypeNum != null">
+        software_type_num = #{map.softwareTypeNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where software_type_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByIds">
+    update asset_soft_type
+    <set>
+      <if test="map.modeId != null">
+        mode_id = #{map.modeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.attrId != null">
+        attr_id = #{map.attrId,jdbcType=INTEGER},
+      </if>
+      <if test="map.signName != null">
+        sign_name = #{map.signName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.version != null">
+        version = #{map.version,jdbcType=VARCHAR},
+      </if>
+      <if test="map.manufacturer != null">
+        manufacturer = #{map.manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="map.manufacturerPhone != null">
+        manufacturer_phone = #{map.manufacturerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="map.authorizeTypeId != null">
+        authorize_type_id = #{map.authorizeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.licenseTime != null">
+        license_time = #{map.licenseTime,jdbcType=DATE},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="map.isHide != null">
+        is_hide = #{map.isHide,jdbcType=TINYINT},
+      </if>
+      <if test="map.authorizeCount != null">
+        authorize_count = #{map.authorizeCount,jdbcType=INTEGER},
+      </if>
+      <if test="map.softwareTypeNum != null">
+        software_type_num = #{map.softwareTypeNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where software_type_id in
+    <foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="update">
+    update asset_soft_type
+    <set>
+      <if test="map.modeId != null">
+        mode_id = #{map.modeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.attrId != null">
+        attr_id = #{map.attrId,jdbcType=INTEGER},
+      </if>
+      <if test="map.signName != null">
+        sign_name = #{map.signName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.version != null">
+        version = #{map.version,jdbcType=VARCHAR},
+      </if>
+      <if test="map.manufacturer != null">
+        manufacturer = #{map.manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="map.manufacturerPhone != null">
+        manufacturer_phone = #{map.manufacturerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="map.authorizeTypeId != null">
+        authorize_type_id = #{map.authorizeTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.licenseTime != null">
+        license_time = #{map.licenseTime,jdbcType=DATE},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="map.isHide != null">
+        is_hide = #{map.isHide,jdbcType=TINYINT},
+      </if>
+      <if test="map.authorizeCount != null">
+        authorize_count = #{map.authorizeCount,jdbcType=INTEGER},
+      </if>
+      <if test="map.softwareTypeNum != null">
+        software_type_num = #{map.softwareTypeNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where 
+    <trim prefixOverrides="and">
+    <if test="where.softwareTypeId != null">
+        and software_type_id = #{where.softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="where.modeId != null">
+        and mode_id = #{where.modeId,jdbcType=INTEGER}
+      </if>
+      <if test="where.attrId != null">
+        and attr_id = #{where.attrId,jdbcType=INTEGER}
+      </if>
+      <if test="where.signName != null">
+        and sign_name = #{where.signName,jdbcType=VARCHAR}
+      </if>
+      <if test="where.version != null">
+        and version = #{where.version,jdbcType=VARCHAR}
+      </if>
+      <if test="where.manufacturer != null">
+        and manufacturer = #{where.manufacturer,jdbcType=VARCHAR}
+      </if>
+      <if test="where.manufacturerPhone != null">
+        and manufacturer_phone = #{where.manufacturerPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="where.authorizeTypeId != null">
+        and authorize_type_id = #{where.authorizeTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="where.licenseTime != null">
+        and license_time = #{where.licenseTime,jdbcType=DATE}
+      </if>
+      <if test="where.createTime != null">
+        and create_time = #{where.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="where.isHide != null">
+        and is_hide = #{where.isHide,jdbcType=TINYINT}
+      </if>
+      <if test="where.authorizeCount != null">
+        and authorize_count = #{where.authorizeCount,jdbcType=INTEGER}
+      </if>
+      <if test="where.softwareTypeNum != null">
+        and software_type_num = #{where.softwareTypeNum,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </update>
+
+  <delete id="deleteById">
+  	delete from asset_soft_type where software_type_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByIds">
+  	delete from asset_soft_type where software_type_id in
+  	<foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </delete>
+  <delete id="delete">
+  	delete from asset_soft_type where 
+    <trim prefixOverrides="and">
+    <if test="softwareTypeId != null">
+        and software_type_id = #{softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="modeId != null">
+        and mode_id = #{modeId,jdbcType=INTEGER}
+      </if>
+      <if test="attrId != null">
+        and attr_id = #{attrId,jdbcType=INTEGER}
+      </if>
+      <if test="signName != null">
+        and sign_name = #{signName,jdbcType=VARCHAR}
+      </if>
+      <if test="version != null">
+        and version = #{version,jdbcType=VARCHAR}
+      </if>
+      <if test="manufacturer != null">
+        and manufacturer = #{manufacturer,jdbcType=VARCHAR}
+      </if>
+      <if test="manufacturerPhone != null">
+        and manufacturer_phone = #{manufacturerPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="authorizeTypeId != null">
+        and authorize_type_id = #{authorizeTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="licenseTime != null">
+        and license_time = #{licenseTime,jdbcType=DATE}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isHide != null">
+        and is_hide = #{isHide,jdbcType=TINYINT}
+      </if>
+      <if test="authorizeCount != null">
+        and authorize_count = #{authorizeCount,jdbcType=INTEGER}
+      </if>
+      <if test="softwareTypeNum != null">
+        and software_type_num = #{softwareTypeNum,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </delete>
+
+	<select id="list" resultType="java.util.HashMap">
+		select sty.*,
+	  		aty.authorize_name, aty.only_one, aty.need_count,
+	  		mo.mode_name, mo.need_authorize, att.attr_name, att.attr_type
+	  	from asset_soft_type sty, asset_soft_authorize_type aty, asset_soft_mode mo, asset_soft_attr att
+	  	where sty.authorize_type_id = aty.authorize_type_id AND sty.mode_id = mo.mode_id AND sty.attr_id = att.attr_id
+	  		<if test="softwareTypeId != null">
+        and software_type_id = #{softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="modeId != null">
+        and mode_id = #{modeId,jdbcType=INTEGER}
+      </if>
+      <if test="attrId != null">
+        and attr_id = #{attrId,jdbcType=INTEGER}
+      </if>
+      <if test="signName != null">
+        and sign_name = #{signName,jdbcType=VARCHAR}
+      </if>
+      <if test="likeSignName != null">
+        and sign_name like concat('%', #{likeSignName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="version != null">
+        and version = #{version,jdbcType=VARCHAR}
+      </if>
+      <if test="manufacturer != null">
+        and manufacturer = #{manufacturer,jdbcType=VARCHAR}
+      </if>
+      <if test="manufacturerPhone != null">
+        and manufacturer_phone = #{manufacturerPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="authorizeTypeId != null">
+        and authorize_type_id = #{authorizeTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="licenseTime != null">
+        and license_time = #{licenseTime,jdbcType=DATE}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isHide != null">
+        and is_hide = #{isHide,jdbcType=TINYINT}
+      </if>
+      <if test="authorizeCount != null">
+        and authorize_count = #{authorizeCount,jdbcType=INTEGER}
+      </if>
+      <if test="softwareTypeNum != null">
+        and software_type_num = #{softwareTypeNum,jdbcType=VARCHAR}
+      </if>
+	</select>
+	<select id="count" resultType="java.lang.Integer">
+		select count(*)
+	  	from asset_soft_type sty, asset_soft_authorize_type aty, asset_soft_mode mo, asset_soft_attr att
+	  	where ba.asset_id = so.asset_id and ba.supplier_id = su.supplier_id and ba.type_id = ty.type_id
+	  		and so.authorize_type_id = aty.authorize_type_id and so.mode_id = mo.mode_id and so.attr_id = att.attr_id
+	  		<if test="softwareTypeId != null">
+        and software_type_id = #{softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="modeId != null">
+        and mode_id = #{modeId,jdbcType=INTEGER}
+      </if>
+      <if test="attrId != null">
+        and attr_id = #{attrId,jdbcType=INTEGER}
+      </if>
+      <if test="signName != null">
+        and sign_name = #{signName,jdbcType=VARCHAR}
+      </if>
+      <if test="likeSignName != null">
+        and sign_name like concat('%', #{likeSignName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="version != null">
+        and version = #{version,jdbcType=VARCHAR}
+      </if>
+      <if test="manufacturer != null">
+        and manufacturer = #{manufacturer,jdbcType=VARCHAR}
+      </if>
+      <if test="manufacturerPhone != null">
+        and manufacturer_phone = #{manufacturerPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="authorizeTypeId != null">
+        and authorize_type_id = #{authorizeTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="licenseTime != null">
+        and license_time = #{licenseTime,jdbcType=DATE}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isHide != null">
+        and is_hide = #{isHide,jdbcType=TINYINT}
+      </if>
+      <if test="authorizeCount != null">
+        and authorize_count = #{authorizeCount,jdbcType=INTEGER}
+      </if>
+      <if test="softwareTypeNum != null">
+        and software_type_num = #{softwareTypeNum,jdbcType=VARCHAR}
+      </if>
+	</select>
+	<select id="listWithOrder" resultType="java.util.HashMap">
+		select sty.*,
+	  		aty.authorize_name, aty.only_one, aty.need_count,
+	  		mo.mode_name, mo.need_authorize, att.attr_name, att.attr_type
+	  	from asset_soft_type sty, asset_soft_authorize_type aty, asset_soft_mode mo, asset_soft_attr att
+	  	where ba.asset_id = so.asset_id and ba.supplier_id = su.supplier_id and ba.type_id = ty.type_id
+	  		and so.authorize_type_id = aty.authorize_type_id and so.mode_id = mo.mode_id and so.attr_id = att.attr_id
+	  		<if test="map.softwareTypeId != null">
+        and software_type_id = #{map.softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.modeId != null">
+        and mode_id = #{map.modeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.attrId != null">
+        and attr_id = #{map.attrId,jdbcType=INTEGER}
+      </if>
+      <if test="map.signName != null">
+        and sign_name = #{map.signName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeSignName != null">
+        and sign_name like concat('%', #{map.likeSignName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.version != null">
+        and version = #{map.version,jdbcType=VARCHAR}
+      </if>
+      <if test="map.manufacturer != null">
+        and manufacturer = #{map.manufacturer,jdbcType=VARCHAR}
+      </if>
+      <if test="map.manufacturerPhone != null">
+        and manufacturer_phone = #{map.manufacturerPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="map.authorizeTypeId != null">
+        and authorize_type_id = #{map.authorizeTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.licenseTime != null">
+        and license_time = #{map.licenseTime,jdbcType=DATE}
+      </if>
+      <if test="map.createTime != null">
+        and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.isHide != null">
+        and is_hide = #{map.isHide,jdbcType=TINYINT}
+      </if>
+      <if test="map.authorizeCount != null">
+        and authorize_count = #{map.authorizeCount,jdbcType=INTEGER}
+      </if>
+      <if test="map.softwareTypeNum != null">
+        and software_type_num = #{map.softwareTypeNum,jdbcType=VARCHAR}
+      </if>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+	</select>
+	<select id="listPage" resultType="java.util.HashMap">
+		select sty.*,
+	  		aty.authorize_name, aty.only_one, aty.need_count,
+	  		mo.mode_name, mo.need_authorize, att.attr_name, att.attr_type
+	  	from asset_soft_type sty, asset_soft_authorize_type aty, asset_soft_mode mo, asset_soft_attr att
+	  	where ba.asset_id = so.asset_id and ba.supplier_id = su.supplier_id and ba.type_id = ty.type_id
+	  		and so.authorize_type_id = aty.authorize_type_id and so.mode_id = mo.mode_id and so.attr_id = att.attr_id
+	  		<if test="map.softwareTypeId != null">
+        and software_type_id = #{map.softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.modeId != null">
+        and mode_id = #{map.modeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.attrId != null">
+        and attr_id = #{map.attrId,jdbcType=INTEGER}
+      </if>
+      <if test="map.signName != null">
+        and sign_name = #{map.signName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeSignName != null">
+        and sign_name like concat('%', #{map.likeSignName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.version != null">
+        and version = #{map.version,jdbcType=VARCHAR}
+      </if>
+      <if test="map.manufacturer != null">
+        and manufacturer = #{map.manufacturer,jdbcType=VARCHAR}
+      </if>
+      <if test="map.manufacturerPhone != null">
+        and manufacturer_phone = #{map.manufacturerPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="map.authorizeTypeId != null">
+        and authorize_type_id = #{map.authorizeTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.licenseTime != null">
+        and license_time = #{map.licenseTime,jdbcType=DATE}
+      </if>
+      <if test="map.createTime != null">
+        and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.isHide != null">
+        and is_hide = #{map.isHide,jdbcType=TINYINT}
+      </if>
+      <if test="map.authorizeCount != null">
+        and authorize_count = #{map.authorizeCount,jdbcType=INTEGER}
+      </if>
+      <if test="map.softwareTypeNum != null">
+        and software_type_num = #{map.softwareTypeNum,jdbcType=VARCHAR}
+      </if>
+		limit #{offset}, #{limit}
+	</select>
+	<select id="listPageWithOrder" resultType="java.util.HashMap">
+		select sty.*,
+	  		aty.authorize_name, aty.only_one, aty.need_count,
+	  		mo.mode_name, mo.need_authorize, att.attr_name, att.attr_type
+	  	from asset_soft_type sty, asset_soft_authorize_type aty, asset_soft_mode mo, asset_soft_attr att
+	  	where ba.asset_id = so.asset_id and ba.supplier_id = su.supplier_id and ba.type_id = ty.type_id
+	  		and so.authorize_type_id = aty.authorize_type_id and so.mode_id = mo.mode_id and so.attr_id = att.attr_id
+	  		<if test="map.softwareTypeId != null">
+        and software_type_id = #{map.softwareTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.modeId != null">
+        and mode_id = #{map.modeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.attrId != null">
+        and attr_id = #{map.attrId,jdbcType=INTEGER}
+      </if>
+      <if test="map.signName != null">
+        and sign_name = #{map.signName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeSignName != null">
+        and sign_name like concat('%', #{map.likeSignName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.version != null">
+        and version = #{map.version,jdbcType=VARCHAR}
+      </if>
+      <if test="map.manufacturer != null">
+        and manufacturer = #{map.manufacturer,jdbcType=VARCHAR}
+      </if>
+      <if test="map.manufacturerPhone != null">
+        and manufacturer_phone = #{map.manufacturerPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="map.authorizeTypeId != null">
+        and authorize_type_id = #{map.authorizeTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.licenseTime != null">
+        and license_time = #{map.licenseTime,jdbcType=DATE}
+      </if>
+      <if test="map.createTime != null">
+        and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.isHide != null">
+        and is_hide = #{map.isHide,jdbcType=TINYINT}
+      </if>
+      <if test="map.authorizeCount != null">
+        and authorize_count = #{map.authorizeCount,jdbcType=INTEGER}
+      </if>
+      <if test="map.softwareTypeNum != null">
+        and software_type_num = #{map.softwareTypeNum,jdbcType=VARCHAR}
+      </if>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+		limit #{offset}, #{limit}
+	</select>
+
+
+</mapper>

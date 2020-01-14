@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--指定日志的具体实现-->
+    <!--<settings>-->
+        <!--<setting name="logImp1" value="LOG4J"/>-->
+    <!--</settings>-->
+    <!--环境配置  连接的数据库-->
+    <environments default="mysql">
+        <environment id="mysql">
+            <!--指定事务管理类型 type="JDBC"指直接简单使用了JDBC的提交和回滚设置-->
+            <transactionManager type="JDBC"/>
+            <!--数据源配置,POOLED是JDBC连接对象的数据源连接池的实现-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/sam-asset?characterEncoding=utf-8&amp;useSSL=false&amp;useUnicode=true"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--mappers标签用于告诉mybatis框架去哪里找持久化类的映射文件-->
+    <mappers>
+        <mapper resource="mapper/AssetBaseMapper.xml"/>
+        <mapper resource="mapper/AssetBaseFixedMapper.xml"/>
+        <mapper resource="mapper/AssetBaseFlowMapper.xml"/>
+        <mapper resource="mapper/AssetBaseInteMapper.xml"/>
+        <mapper resource="mapper/AssetBaseSoftMapper.xml"/>
+        <mapper resource="mapper/AssetBaseSupplierMapper.xml"/>
+        <mapper resource="mapper/AssetBaseTypeMapper.xml"/>
+        <mapper resource="mapper/AssetSoftwareMapper.xml"/>
+        <mapper resource="mapper/AssetSoftTypeMapper.xml"/>
+        <mapper resource="mapper/AssetSoftAttrMapper.xml"/>
+        <mapper resource="mapper/AssetSoftModeMapper.xml"/>
+        <mapper resource="mapper/AssetSoftAuthorizeTypeMapper.xml"/>
+    </mappers>
+    
+</configuration>
+
+
+
+
+

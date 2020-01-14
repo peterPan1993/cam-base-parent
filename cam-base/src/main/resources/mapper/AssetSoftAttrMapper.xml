@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.dao.AssetSoftAttrDAO">
+  <sql id="Base_Column_List">
+    attr_id, attr_name, attr_type, can_use, create_time
+  </sql>
+
+  <insert id="save" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="attrId" keyColumn="attr_id">
+    insert into asset_soft_attr
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attrId != null">
+        attr_id,
+      </if>
+      <if test="attrName != null">
+        attr_name,
+      </if>
+      <if test="attrType != null">
+        attr_type,
+      </if>
+      <if test="canUse != null">
+        can_use,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attrId != null">
+        #{attrId,jdbcType=INTEGER},
+      </if>
+      <if test="attrName != null">
+        #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="attrType != null">
+        #{attrType,jdbcType=TINYINT},
+      </if>
+      <if test="canUse != null">
+        #{canUse,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateById">
+    update asset_soft_attr
+    <set>
+      <if test="map.attrName != null">
+        attr_name = #{map.attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.attrType != null">
+        attr_type = #{map.attrType,jdbcType=TINYINT},
+      </if>
+      <if test="map.canUse != null">
+        can_use = #{map.canUse,jdbcType=TINYINT},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where attr_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByIds">
+    update asset_soft_attr
+    <set>
+      <if test="map.attrName != null">
+        attr_name = #{map.attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.attrType != null">
+        attr_type = #{map.attrType,jdbcType=TINYINT},
+      </if>
+      <if test="map.canUse != null">
+        can_use = #{map.canUse,jdbcType=TINYINT},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where attr_id in
+    <foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="update">
+    update asset_soft_attr
+    <set>
+      <if test="map.attrName != null">
+        attr_name = #{map.attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.attrType != null">
+        attr_type = #{map.attrType,jdbcType=TINYINT},
+      </if>
+      <if test="map.canUse != null">
+        can_use = #{map.canUse,jdbcType=TINYINT},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where 
+    <trim prefixOverrides="and">
+    <if test="where.attrId != null">
+        and attr_id = #{where.attrId,jdbcType=VARCHAR}
+      </if>
+    <if test="where.attrName != null">
+        and attr_name = #{where.attrName,jdbcType=VARCHAR}
+      </if>
+      <if test="where.attrType != null">
+        and attr_type = #{where.attrType,jdbcType=TINYINT}
+      </if>
+      <if test="where.canUse != null">
+        and can_use = #{where.canUse,jdbcType=TINYINT}
+      </if>
+      <if test="where.createTime != null">
+        and create_time = #{where.createTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </update>
+
+  <delete id="deleteById">
+  	delete from asset_soft_attr where attr_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByIds">
+  	delete from asset_soft_attr where attr_id in
+  	<foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </delete>
+  <delete id="delete">
+  	delete from asset_soft_attr where 
+    <trim prefixOverrides="and">
+    <if test="attrId != null">
+        and attr_id = #{attrId,jdbcType=VARCHAR}
+      </if>
+    <if test="attrName != null">
+        and attr_name = #{attrName,jdbcType=VARCHAR}
+      </if>
+      <if test="attrType != null">
+        and attr_type = #{attrType,jdbcType=TINYINT}
+      </if>
+      <if test="canUse != null">
+        and can_use = #{canUse,jdbcType=TINYINT}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </delete>
+
+	<select id="list" resultType="java.util.HashMap">
+		select * from asset_soft_attr
+		<where>
+			<if test="attrId != null">
+				and attr_id = #{attrId,jdbcType=VARCHAR}
+			</if>
+			<if test="attrName != null">
+				and attr_name = #{attrName,jdbcType=VARCHAR}
+			</if>
+			<if test="likeAttrName != null">
+				and attr_name like concat('%', #{likeAttrName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="attrType != null">
+				and attr_type = #{attrType,jdbcType=TINYINT}
+			</if>
+			<if test="canUse != null">
+				and can_use = #{canUse,jdbcType=TINYINT}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+	</select>
+	<select id="count" resultType="java.lang.Integer">
+		select count(*) from asset_soft_attr
+		<where>
+			<if test="attrId != null">
+				and attr_id = #{attrId,jdbcType=VARCHAR}
+			</if>
+			<if test="attrName != null">
+				and attr_name = #{attrName,jdbcType=VARCHAR}
+			</if>
+			<if test="likeAttrName != null">
+				and attr_name like concat('%', #{likeAttrName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="attrType != null">
+				and attr_type = #{attrType,jdbcType=TINYINT}
+			</if>
+			<if test="canUse != null">
+				and can_use = #{canUse,jdbcType=TINYINT}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+	</select>
+	<select id="listWithOrder" resultType="java.util.HashMap">
+		select * from asset_soft_attr
+		<where>
+			<if test="map.attrId != null">
+				and attr_id = #{map.attrId,jdbcType=VARCHAR}
+			</if>
+			<if test="map.attrName != null">
+				and attr_name = #{map.attrName,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeAttrName != null">
+				and attr_name like concat('%', #{map.likeAttrName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.attrType != null">
+				and attr_type = #{map.attrType,jdbcType=TINYINT}
+			</if>
+			<if test="map.canUse != null">
+				and can_use = #{map.canUse,jdbcType=TINYINT}
+			</if>
+			<if test="map.createTime != null">
+				and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+	</select>
+	<select id="listPage" resultType="java.util.HashMap">
+		select * from asset_soft_attr
+		<where>
+			<if test="map.attrId != null">
+				and attr_id = #{map.attrId,jdbcType=VARCHAR}
+			</if>
+			<if test="map.attrName != null">
+				and attr_name = #{map.attrName,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeAttrName != null">
+				and attr_name like concat('%', #{map.likeAttrName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.attrType != null">
+				and attr_type = #{map.attrType,jdbcType=TINYINT}
+			</if>
+			<if test="map.canUse != null">
+				and can_use = #{map.canUse,jdbcType=TINYINT}
+			</if>
+			<if test="map.createTime != null">
+				and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		limit #{offset}, #{limit}
+	</select>
+	<select id="listPageWithOrder" resultType="java.util.HashMap">
+		select * from asset_soft_attr
+		<where>
+			<if test="map.attrId != null">
+				and attr_id = #{map.attrId,jdbcType=VARCHAR}
+			</if>
+			<if test="map.attrName != null">
+				and attr_name = #{map.attrName,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeAttrName != null">
+				and attr_name like concat('%', #{map.likeAttrName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.attrType != null">
+				and attr_type = #{map.attrType,jdbcType=TINYINT}
+			</if>
+			<if test="map.canUse != null">
+				and can_use = #{map.canUse,jdbcType=TINYINT}
+			</if>
+			<if test="map.createTime != null">
+				and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+		limit #{offset}, #{limit}
+	</select>
+
+</mapper>

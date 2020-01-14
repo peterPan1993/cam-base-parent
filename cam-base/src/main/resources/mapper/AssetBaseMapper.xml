@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.dao.AssetBaseDAO">
+  <sql id="Base_Column_List">
+    asset_id, supplier_id, type_id, asset_case, `number`, edit_number, asset_name, finance_coding, 
+    `state`, unit, asset_count, price, buy_time, picture, can_use, create_time
+  </sql>
+  
+  <insert id="save" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="assetId" keyColumn="asset_id">
+    insert into asset_base
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="assetId != null">
+        asset_id,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="assetCase != null">
+        asset_case,
+      </if>
+      <if test="number != null">
+        `number`,
+      </if>
+      <if test="editNumber != null">
+        edit_number,
+      </if>
+      <if test="assetName != null">
+        asset_name,
+      </if>
+      <if test="financeCoding != null">
+        finance_coding,
+      </if>
+      <if test="state != null">
+        `state`,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="assetCount != null">
+        asset_count,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="buyTime != null">
+        buy_time,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+      <if test="canUse != null">
+        can_use,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="assetId != null">
+        #{assetId,jdbcType=INTEGER},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="assetCase != null">
+        #{assetCase,jdbcType=TINYINT},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="editNumber != null">
+        #{editNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="assetName != null">
+        #{assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="financeCoding != null">
+        #{financeCoding,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="assetCount != null">
+        #{assetCount,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="buyTime != null">
+        #{buyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="canUse != null">
+        #{canUse,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateById">
+    update asset_base
+    <set>
+      <if test="map.supplierId != null">
+        supplier_id = #{map.supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="map.typeId != null">
+        type_id = #{map.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.assetCase != null">
+        asset_case = #{map.assetCase,jdbcType=TINYINT},
+      </if>
+      <if test="map.number != null">
+        `number` = #{map.number,jdbcType=VARCHAR},
+      </if>
+      <if test="map.editNumber != null">
+        edit_number = #{map.editNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="map.assetName != null">
+        asset_name = #{map.assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.financeCoding != null">
+        finance_coding = #{map.financeCoding,jdbcType=VARCHAR},
+      </if>
+      <if test="map.state != null">
+        `state` = #{map.state,jdbcType=VARCHAR},
+      </if>
+      <if test="map.unit != null">
+        unit = #{map.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="map.assetCount != null">
+        asset_count = #{map.assetCount,jdbcType=INTEGER},
+      </if>
+      <if test="map.price != null">
+        price = #{map.price,jdbcType=DOUBLE},
+      </if>
+      <if test="map.buyTime != null">
+        buy_time = #{map.buyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="map.picture != null">
+        picture = #{map.picture,jdbcType=VARCHAR},
+      </if>
+      <if test="map.canUse != null">
+        can_use = #{map.canUse,jdbcType=TINYINT},
+      </if>
+    </set>
+    where asset_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByIds">
+    update asset_base
+    <set>
+      <if test="map.supplierId != null">
+        supplier_id = #{map.supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="map.typeId != null">
+        type_id = #{map.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.assetCase != null">
+        asset_case = #{map.assetCase,jdbcType=TINYINT},
+      </if>
+      <if test="map.number != null">
+        `number` = #{map.number,jdbcType=VARCHAR},
+      </if>
+      <if test="map.editNumber != null">
+        edit_number = #{map.editNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="map.assetName != null">
+        asset_name = #{map.assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.financeCoding != null">
+        finance_coding = #{map.financeCoding,jdbcType=VARCHAR},
+      </if>
+      <if test="map.state != null">
+        `state` = #{map.state,jdbcType=VARCHAR},
+      </if>
+      <if test="map.unit != null">
+        unit = #{map.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="map.assetCount != null">
+        asset_count = #{map.assetCount,jdbcType=INTEGER},
+      </if>
+      <if test="map.price != null">
+        price = #{map.price,jdbcType=DOUBLE},
+      </if>
+      <if test="map.buyTime != null">
+        buy_time = #{map.buyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="map.picture != null">
+        picture = #{map.picture,jdbcType=VARCHAR},
+      </if>
+      <if test="map.canUse != null">
+        can_use = #{map.canUse,jdbcType=TINYINT},
+      </if>
+    </set>
+    where asset_id in
+    <foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="update">
+    update asset_base
+    <set>
+      <if test="map.supplierId != null">
+        supplier_id = #{map.supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="map.typeId != null">
+        type_id = #{map.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="map.assetCase != null">
+        asset_case = #{map.assetCase,jdbcType=TINYINT},
+      </if>
+      <if test="map.number != null">
+        `number` = #{map.number,jdbcType=VARCHAR},
+      </if>
+      <if test="map.editNumber != null">
+        edit_number = #{map.editNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="map.assetName != null">
+        asset_name = #{map.assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.financeCoding != null">
+        finance_coding = #{map.financeCoding,jdbcType=VARCHAR},
+      </if>
+      <if test="map.state != null">
+        `state` = #{map.state,jdbcType=VARCHAR},
+      </if>
+      <if test="map.unit != null">
+        unit = #{map.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="map.assetCount != null">
+        asset_count = #{map.assetCount,jdbcType=INTEGER},
+      </if>
+      <if test="map.price != null">
+        price = #{map.price,jdbcType=DOUBLE},
+      </if>
+      <if test="map.buyTime != null">
+        buy_time = #{map.buyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="map.picture != null">
+        picture = #{map.picture,jdbcType=VARCHAR},
+      </if>
+      <if test="map.canUse != null">
+        can_use = #{map.canUse,jdbcType=TINYINT},
+      </if>
+    </set>
+    where
+    <trim prefixOverrides="and">
+      <if test="where.supplierId != null">
+        and supplier_id = #{where.supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="where.typeId != null">
+        and type_id = #{where.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="where.assetCase != null">
+        and asset_case = #{where.assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="where.number != null">
+        and `number` = #{where.number,jdbcType=VARCHAR}
+      </if>
+      <if test="where.editNumber != null">
+        and edit_number = #{where.editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="where.assetName != null">
+        and asset_name = #{where.assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="where.financeCoding != null">
+        and finance_coding = #{where.financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="where.state != null">
+        and `state` = #{where.state,jdbcType=VARCHAR}
+      </if>
+      <if test="where.unit != null">
+        and unit = #{where.unit,jdbcType=VARCHAR}
+      </if>
+      <if test="where.assetCount != null">
+        and asset_count = #{where.assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="where.price != null">
+        and price = #{where.price,jdbcType=DOUBLE}
+      </if>
+      <if test="where.buyTime != null">
+        and buy_time = #{where.buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="where.picture != null">
+        and picture = #{where.picture,jdbcType=VARCHAR}
+      </if>
+      <if test="where.canUse != null">
+        and can_use = #{where.canUse,jdbcType=TINYINT}
+      </if>
+    </trim>
+  </update>
+  
+  <delete id="deleteById">
+  	delete from asset_base where asset_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByIds">
+  	delete from asset_base where asset_id in
+  	<foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </delete>
+  <delete id="delete">
+  	delete from asset_base where
+  	<trim prefixOverrides="and">
+      <if test="supplierId != null">
+        and supplier_id = #{supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="typeId != null">
+        and type_id = #{typeId,jdbcType=INTEGER}
+      </if>
+      <if test="assetCase != null">
+        and asset_case = #{assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="number != null">
+        and `number` = #{number,jdbcType=VARCHAR}
+      </if>
+      <if test="editNumber != null">
+        and edit_number = #{editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="assetName != null">
+        and asset_name = #{assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="financeCoding != null">
+        and finance_coding = #{financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="state != null">
+        and `state` = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="unit != null">
+        and unit = #{unit,jdbcType=VARCHAR}
+      </if>
+      <if test="assetCount != null">
+        and asset_count = #{assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="price != null">
+        and price = #{price,jdbcType=DOUBLE}
+      </if>
+      <if test="buyTime != null">
+        and buy_time = #{buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="picture != null">
+        and picture = #{picture,jdbcType=VARCHAR}
+      </if>
+      <if test="canUse != null">
+        and can_use = #{canUse,jdbcType=TINYINT}
+      </if>
+    </trim>
+  </delete>
+  
+  <select id="list" resultType="java.util.HashMap">
+  	select ba.*,
+  		su.supplier_name, su.supplier_phone, su.supplier_address, su.supplier_memo,
+  		ty.type_name, ty.type_memo, ty.type_case
+  	from asset_base ba left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  	<where>
+  	  <if test="assetId != null">
+        and ba.asset_id = #{assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="supplierId != null">
+        and ba.supplier_id = #{supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="typeId != null">
+        and ba.type_id = #{typeId,jdbcType=INTEGER}
+      </if>
+      <if test="assetCase != null">
+        and ba.asset_case = #{assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="number != null">
+        and ba.`number` = #{number,jdbcType=VARCHAR}
+      </if>
+      <if test="likeNumber != null">
+        and ba.`number` like concat('%', #{likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="editNumber != null">
+        and ba.edit_number = #{editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="likeEditNumber != null">
+        and ba.edit_number like concat('%', #{likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="assetName != null">
+        and ba.asset_name = #{assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="likeAssetName != null">
+        and ba.asset_name like concat('%', #{likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="financeCoding != null">
+        and ba.finance_coding = #{financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="state != null">
+        and ba.`state` = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="unit != null">
+        and ba.unit = #{unit,jdbcType=VARCHAR}
+      </if>
+      <if test="assetCount != null">
+        and ba.asset_count = #{assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="price != null">
+        and ba.price = #{price,jdbcType=DOUBLE}
+      </if>
+      <if test="buyTime != null">
+        and ba.buy_time = #{buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="picture != null">
+        and ba.picture = #{picture,jdbcType=VARCHAR}
+      </if>
+      <if test="canUse != null">
+        and ba.can_use = #{canUse,jdbcType=TINYINT}
+      </if>
+      </where>
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+  	select count(*)
+  	from asset_base ba left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  	<where>
+  	  <if test="assetId != null">
+        and ba.asset_id = #{assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="supplierId != null">
+        and ba.supplier_id = #{supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="typeId != null">
+        and ba.type_id = #{typeId,jdbcType=INTEGER}
+      </if>
+      <if test="assetCase != null">
+        and ba.asset_case = #{assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="number != null">
+        and ba.`number` = #{number,jdbcType=VARCHAR}
+      </if>
+      <if test="likeNumber != null">
+        and ba.`number` like concat('%', #{likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="editNumber != null">
+        and ba.edit_number = #{editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="likeEditNumber != null">
+        and ba.edit_number like concat('%', #{likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="assetName != null">
+        and ba.asset_name = #{assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="likeAssetName != null">
+        and ba.asset_name like concat('%', #{likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="financeCoding != null">
+        and ba.finance_coding = #{financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="state != null">
+        and ba.`state` = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="unit != null">
+        and ba.unit = #{unit,jdbcType=VARCHAR}
+      </if>
+      <if test="assetCount != null">
+        and ba.asset_count = #{assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="price != null">
+        and ba.price = #{price,jdbcType=DOUBLE}
+      </if>
+      <if test="buyTime != null">
+        and ba.buy_time = #{buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="picture != null">
+        and ba.picture = #{picture,jdbcType=VARCHAR}
+      </if>
+      <if test="canUse != null">
+        and ba.can_use = #{canUse,jdbcType=TINYINT}
+      </if>
+      </where>
+  </select>
+  <select id="listWithOrder" resultType="java.util.HashMap">
+  	select ba.*,
+  		su.supplier_name, su.supplier_phone, su.supplier_address, su.supplier_memo,
+  		ty.type_name, ty.type_memo, ty.type_case
+  	from asset_base ba left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  	<where>
+  	  <if test="map.assetId != null">
+        and ba.asset_id = #{map.assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="map.supplierId != null">
+        and ba.supplier_id = #{map.supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="map.typeId != null">
+        and ba.type_id = #{map.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.assetCase != null">
+        and ba.asset_case = #{map.assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="map.number != null">
+        and ba.`number` = #{map.number,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeNumber != null">
+        and ba.`number` like concat('%', #{map.likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.editNumber != null">
+        and ba.edit_number = #{map.editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeEditNumber != null">
+        and ba.edit_number like concat('%', #{map.likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.assetName != null">
+        and ba.asset_name = #{map.assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeAssetName != null">
+        and ba.asset_name like concat('%', #{map.likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.financeCoding != null">
+        and ba.finance_coding = #{map.financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{map.likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.state != null">
+        and ba.`state` = #{map.state,jdbcType=VARCHAR}
+      </if>
+      <if test="map.unit != null">
+        and ba.unit = #{map.unit,jdbcType=VARCHAR}
+      </if>
+      <if test="map.assetCount != null">
+        and ba.asset_count = #{map.assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="map.price != null">
+        and ba.price = #{map.price,jdbcType=DOUBLE}
+      </if>
+      <if test="map.buyTime != null">
+        and ba.buy_time = #{map.buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.picture != null">
+        and ba.picture = #{map.picture,jdbcType=VARCHAR}
+      </if>
+      <if test="map.canUse != null">
+        and ba.can_use = #{map.canUse,jdbcType=TINYINT}
+      </if>
+      </where>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+  </select>
+  <select id="listPage" resultType="java.util.HashMap">
+  	select ba.*,
+  		su.supplier_name, su.supplier_phone, su.supplier_address, su.supplier_memo,
+  		ty.type_name, ty.type_memo, ty.type_case
+  	from asset_base ba left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  	<where>
+  	  <if test="map.assetId != null">
+        and ba.asset_id = #{map.assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="map.supplierId != null">
+        and ba.supplier_id = #{map.supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="map.typeId != null">
+        and ba.type_id = #{map.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.assetCase != null">
+        and ba.asset_case = #{map.assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="map.number != null">
+        and ba.`number` = #{map.number,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeNumber != null">
+        and ba.`number` like concat('%', #{map.likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.editNumber != null">
+        and ba.edit_number = #{map.editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeEditNumber != null">
+        and ba.edit_number like concat('%', #{map.likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.assetName != null">
+        and ba.asset_name = #{map.assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeAssetName != null">
+        and ba.asset_name like concat('%', #{map.likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.financeCoding != null">
+        and ba.finance_coding = #{map.financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{map.likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.state != null">
+        and ba.`state` = #{map.state,jdbcType=VARCHAR}
+      </if>
+      <if test="map.unit != null">
+        and ba.unit = #{map.unit,jdbcType=VARCHAR}
+      </if>
+      <if test="map.assetCount != null">
+        and ba.asset_count = #{map.assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="map.price != null">
+        and ba.price = #{map.price,jdbcType=DOUBLE}
+      </if>
+      <if test="map.buyTime != null">
+        and ba.buy_time = #{map.buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.picture != null">
+        and ba.picture = #{map.picture,jdbcType=VARCHAR}
+      </if>
+      <if test="map.canUse != null">
+        and ba.can_use = #{map.canUse,jdbcType=TINYINT}
+      </if>
+      </where>
+      limit #{offset}, #{limit}
+  </select>
+  <select id="listPageWithOrder" resultType="java.util.HashMap">
+  	select ba.*,
+  		su.supplier_name, su.supplier_phone, su.supplier_address, su.supplier_memo,
+  		ty.type_name, ty.type_memo, ty.type_case
+  	from asset_base ba left join asset_base_supplier su on ba.supplier_id = su.supplier_id
+  		left join asset_base_type ty on ba.type_id = ty.type_id
+  	<where>
+  	  <if test="map.assetId != null">
+        and ba.asset_id = #{map.assetId,jdbcType=INTEGER}
+      </if>
+  	  <if test="map.supplierId != null">
+        and ba.supplier_id = #{map.supplierId,jdbcType=INTEGER}
+      </if>
+      <if test="map.typeId != null">
+        and ba.type_id = #{map.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="map.assetCase != null">
+        and ba.asset_case = #{map.assetCase,jdbcType=TINYINT}
+      </if>
+      <if test="map.number != null">
+        and ba.`number` = #{map.number,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeNumber != null">
+        and ba.`number` like concat('%', #{map.likeNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.editNumber != null">
+        and ba.edit_number = #{map.editNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeEditNumber != null">
+        and ba.edit_number like concat('%', #{map.likeEditNumber,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.assetName != null">
+        and ba.asset_name = #{map.assetName,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeAssetName != null">
+        and ba.asset_name like concat('%', #{map.likeAssetName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.financeCoding != null">
+        and ba.finance_coding = #{map.financeCoding,jdbcType=VARCHAR}
+      </if>
+      <if test="map.likeFinanceCoding != null">
+        and ba.finance_coding like concat('%', #{map.likeFinanceCoding,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="map.state != null">
+        and ba.`state` = #{map.state,jdbcType=VARCHAR}
+      </if>
+      <if test="map.unit != null">
+        and ba.unit = #{map.unit,jdbcType=VARCHAR}
+      </if>
+      <if test="map.assetCount != null">
+        and ba.asset_count = #{map.assetCount,jdbcType=INTEGER}
+      </if>
+      <if test="map.price != null">
+        and ba.price = #{map.price,jdbcType=DOUBLE}
+      </if>
+      <if test="map.buyTime != null">
+        and ba.buy_time = #{map.buyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="map.picture != null">
+        and ba.picture = #{map.picture,jdbcType=VARCHAR}
+      </if>
+      <if test="map.canUse != null">
+        and ba.can_use = #{map.canUse,jdbcType=TINYINT}
+      </if>
+      </where>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+      limit #{offset}, #{limit}
+  </select>
+  
+</mapper>

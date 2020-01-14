@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.dao.AssetBaseTypeDAO">
+  <sql id="Base_Column_List">
+    type_id, type_name, type_memo, type_case, can_use, create_time
+  </sql>
+
+  <insert id="save" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="typeId" keyColumn="type_id">
+    insert into asset_base_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="typeName != null">
+        type_name,
+      </if>
+      <if test="typeMemo != null">
+        type_memo,
+      </if>
+      <if test="typeCase != null">
+        type_case,
+      </if>
+      <if test="canUse != null">
+        can_use,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeMemo != null">
+        #{typeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCase != null">
+        #{typeCase,jdbcType=TINYINT},
+      </if>
+      <if test="canUse != null">
+        #{canUse,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateById">
+    update asset_base_type
+    <set>
+      <if test="map.typeName != null">
+        type_name = #{map.typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.typeMemo != null">
+        type_memo = #{map.typeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.typeCase != null">
+        type_case = #{map.typeCase,jdbcType=TINYINT},
+      </if>
+      <if test="map.canUse != null">
+        can_use = #{map.canUse,jdbcType=TINYINT},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where type_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByIds">
+    update asset_base_type
+    <set>
+      <if test="map.typeName != null">
+        type_name = #{map.typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.typeMemo != null">
+        type_memo = #{map.typeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.typeCase != null">
+        type_case = #{map.typeCase,jdbcType=TINYINT},
+      </if>
+      <if test="map.canUse != null">
+        can_use = #{map.canUse,jdbcType=TINYINT},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where type_id in
+    <foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="update">
+    update asset_base_type
+    <set>
+      <if test="map.typeName != null">
+        type_name = #{map.typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="map.typeMemo != null">
+        type_memo = #{map.typeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="map.typeCase != null">
+        type_case = #{map.typeCase,jdbcType=TINYINT},
+      </if>
+      <if test="map.canUse != null">
+        can_use = #{map.canUse,jdbcType=TINYINT},
+      </if>
+      <if test="map.createTime != null">
+        create_time = #{map.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where 
+    <trim prefixOverrides="and">
+    <if test="where.typeId != null">
+        and type_id = #{where.typeId,jdbcType=VARCHAR}
+      </if>
+    <if test="where.typeName != null">
+        and type_name = #{where.typeName,jdbcType=VARCHAR}
+      </if>
+      <if test="where.typeMemo != null">
+        and type_memo = #{where.typeMemo,jdbcType=VARCHAR}
+      </if>
+      <if test="where.typeCase != null">
+        and type_case = #{where.typeCase,jdbcType=TINYINT}
+      </if>
+      <if test="where.canUse != null">
+        and can_use = #{where.canUse,jdbcType=TINYINT}
+      </if>
+      <if test="where.createTime != null">
+        and create_time = #{where.createTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </update>
+  
+  <delete id="deleteById">
+  	delete from asset_base_type where type_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByIds">
+  	delete from asset_base_type where type_id in
+  	<foreach collection="ids" item="id" open="(" separator="," close=")">
+    	#{id,jdbcType=INTEGER}
+    </foreach>
+  </delete>
+  <delete id="delete">
+  	delete from asset_base_type where 
+    <trim prefixOverrides="and">
+    <if test="typeId != null">
+        and type_id = #{typeId,jdbcType=VARCHAR}
+      </if>
+    <if test="typeName != null">
+        and type_name = #{typeName,jdbcType=VARCHAR}
+      </if>
+      <if test="typeMemo != null">
+        and type_memo = #{typeMemo,jdbcType=VARCHAR}
+      </if>
+      <if test="typeCase != null">
+        and type_case = #{typeCase,jdbcType=TINYINT}
+      </if>
+      <if test="canUse != null">
+        and can_use = #{canUse,jdbcType=TINYINT}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </delete>
+
+	<select id="list" resultType="java.util.HashMap">
+		select * from asset_base_type
+		<where>
+			<if test="typeId != null">
+				and type_id = #{typeId,jdbcType=VARCHAR}
+			</if>
+			<if test="typeName != null">
+				and type_name = #{typeName,jdbcType=VARCHAR}
+			</if>
+			<if test="likeTypeName != null">
+				and type_name like concat('%', #{likeTypeName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="typeMemo != null">
+				and type_memo = #{typeMemo,jdbcType=VARCHAR}
+			</if>
+			<if test="typeCase != null">
+				and type_case = #{typeCase,jdbcType=TINYINT}
+			</if>
+			<if test="canUse != null">
+				and can_use = #{canUse,jdbcType=TINYINT}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+	</select>
+	<select id="count" resultType="java.lang.Integer">
+		select count(*) from asset_base_type
+		<where>
+			<if test="typeId != null">
+				and type_id = #{typeId,jdbcType=VARCHAR}
+			</if>
+			<if test="typeName != null">
+				and type_name = #{typeName,jdbcType=VARCHAR}
+			</if>
+			<if test="likeTypeName != null">
+				and type_name like concat('%', #{likeTypeName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="typeMemo != null">
+				and type_memo = #{typeMemo,jdbcType=VARCHAR}
+			</if>
+			<if test="typeCase != null">
+				and type_case = #{typeCase,jdbcType=TINYINT}
+			</if>
+			<if test="canUse != null">
+				and can_use = #{canUse,jdbcType=TINYINT}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+	</select>
+	<select id="listWithOrder" resultType="java.util.HashMap">
+		select * from asset_base_type
+		<where>
+			<if test="map.typeId != null">
+				and type_id = #{map.typeId,jdbcType=VARCHAR}
+			</if>
+			<if test="map.typeName != null">
+				and type_name = #{map.typeName,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeTypeName != null">
+				and type_name like concat('%', #{map.likeTypeName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.typeMemo != null">
+				and type_memo = #{map.typeMemo,jdbcType=VARCHAR}
+			</if>
+			<if test="map.typeCase != null">
+				and type_case = #{map.typeCase,jdbcType=TINYINT}
+			</if>
+			<if test="map.canUse != null">
+				and can_use = #{map.canUse,jdbcType=TINYINT}
+			</if>
+			<if test="map.createTime != null">
+				and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+	</select>
+	<select id="listPage" resultType="java.util.HashMap">
+		select * from asset_base_type
+		<where>
+			<if test="map.typeId != null">
+				and type_id = #{map.typeId,jdbcType=VARCHAR}
+			</if>
+			<if test="map.typeName != null">
+				and type_name = #{map.typeName,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeTypeName != null">
+				and type_name like concat('%', #{map.likeTypeName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.typeMemo != null">
+				and type_memo = #{map.typeMemo,jdbcType=VARCHAR}
+			</if>
+			<if test="map.typeCase != null">
+				and type_case = #{map.typeCase,jdbcType=TINYINT}
+			</if>
+			<if test="map.canUse != null">
+				and can_use = #{map.canUse,jdbcType=TINYINT}
+			</if>
+			<if test="map.createTime != null">
+				and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		limit #{offset}, #{limit}
+	</select>
+	<select id="listPageWithOrder" resultType="java.util.HashMap">
+		select * from asset_base_type
+		<where>
+			<if test="map.typeId != null">
+				and type_id = #{map.typeId,jdbcType=VARCHAR}
+			</if>
+			<if test="map.typeName != null">
+				and type_name = #{map.typeName,jdbcType=VARCHAR}
+			</if>
+			<if test="map.likeTypeName != null">
+				and type_name like concat('%', #{map.likeTypeName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="map.typeMemo != null">
+				and type_memo = #{map.typeMemo,jdbcType=VARCHAR}
+			</if>
+			<if test="map.typeCase != null">
+				and type_case = #{map.typeCase,jdbcType=TINYINT}
+			</if>
+			<if test="map.canUse != null">
+				and can_use = #{map.canUse,jdbcType=TINYINT}
+			</if>
+			<if test="map.createTime != null">
+				and create_time = #{map.createTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		order by
+		<foreach collection="orderSort" item="orderMap" separator=",">
+			${orderMap.sort} ${orderMap.order}
+		</foreach>
+		limit #{offset}, #{limit}
+	</select>
+
+</mapper>
