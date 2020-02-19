@@ -3,18 +3,14 @@ package com.base.service.impl;
 import java.io.IOException;
 import java.util.Map;
 
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import com.base.util.DataBaseUtils;
 
 public class BaseService {
-
-	public SqlSession getSession() throws IOException {
-		SqlSessionFactory factory = new SqlSessionFactoryBuilder()
-                .build(Resources.getResourceAsStream("mybatis-config.xml"));
-        SqlSession session = factory.openSession();
-        return session;
+	
+	public static SqlSession getSession() throws IOException {
+        return DataBaseUtils.getSession();
 	}
 	
 	/**
@@ -22,7 +18,7 @@ public class BaseService {
 	 * @param map
 	 * @return
 	 */
-	public boolean checkBaseMap(Map<String, Object> map) {
+	protected boolean checkBaseMap(Map<String, Object> map) {
 		if (map.get("typeId") == null) {
 			return false;
 		}
@@ -46,7 +42,7 @@ public class BaseService {
 	 * @param map
 	 * @return
 	 */
-	public boolean updateBaseMap(Map<String, Object> map) {
+	protected boolean updateBaseMap(Map<String, Object> map) {
 		if (map.get("supplierId") != null) {
 			return true;
 		}

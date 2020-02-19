@@ -18,6 +18,6 @@ public interface DataBaseService {
 	List<Map<String, Object>> list(Map<String, Object> map);
 	List<Map<String, Object>> list(Map<String, Object> map, List<Map<String, Object>> orderSort);
 	Map<String, Object> list(Map<String, Object> map, int pageNo, int pageSize);
-	Map<String, Object> list(Map<String, Object> map, int pageNo, int pageSize, List< Map<String, Object>> orderSort);
+	Map<String, Object> list(Map<String, Object> map, int pageNo, int pageSize, List<Map<String, Object>> orderSort);
 	
 }

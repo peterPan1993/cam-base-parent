@@ -26,4 +26,30 @@ public interface AssetBaseDAO {
 	List<Map<String, Object>> listPageWithOrder(@Param("map") Map<String, Object> map,
 			@Param("orderSort") List<Map<String, Object>> orderSort, @Param("offset") int offset,
 			@Param("limit") int limit);
+	
+	int dropBaseTable();
+	int dropBaseFixedTable();
+	int dropBaseFlowTable();
+	int dropBaseInteTable();
+	int dropBaseSoftTable();
+	int dropBaseSupplierTable();
+	int dropBaseTypeTable();
+	int dropSoftAttrTable();
+	int dropSoftAuthorizeTypeTable();
+	int dropSoftModeTable();
+	int dropSoftTypeTable();
+	int dropSoftwareTable();
+
+	int createBaseTable();
+	int createBaseFixedTable();
+	int createBaseFlowTable();
+	int createBaseInteTable();
+	int createBaseSoftTable();
+	int createBaseSupplierTable();
+	int createBaseTypeTable();
+	int createSoftAttrTable();
+	int createSoftAuthorizeTypeTable();
+	int createSoftModeTable();
+	int createSoftTypeTable();
+	int createSoftwareTable();
 }

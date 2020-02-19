@@ -698,4 +698,203 @@
       limit #{offset}, #{limit}
   </select>
   
+  <update id="dropBaseTable">
+  	DROP TABLE IF EXISTS `asset_base`;
+  </update>
+  <update id="dropBaseFixedTable">
+  	DROP TABLE IF EXISTS `asset_base_fixed`;
+  </update>
+  <update id="dropBaseFlowTable">
+  	DROP TABLE IF EXISTS `asset_base_flow`;
+  </update>
+  <update id="dropBaseInteTable">
+  	DROP TABLE IF EXISTS `asset_base_inte`;
+  </update>
+  <update id="dropBaseSoftTable">
+  	DROP TABLE IF EXISTS `asset_base_soft`;
+  </update>
+  <update id="dropBaseSupplierTable">
+  	DROP TABLE IF EXISTS `asset_base_supplier`;
+  </update>
+  <update id="dropBaseTypeTable">
+  	DROP TABLE IF EXISTS `asset_base_type`;
+  </update>
+  <update id="dropSoftAttrTable">
+  	DROP TABLE IF EXISTS `asset_soft_attr`;
+  </update>
+  <update id="dropSoftAuthorizeTypeTable">
+  	DROP TABLE IF EXISTS `asset_soft_authorize_type`;
+  </update>
+  <update id="dropSoftModeTable">
+  	DROP TABLE IF EXISTS `asset_soft_mode`;
+  </update>
+  <update id="dropSoftTypeTable">
+  	DROP TABLE IF EXISTS `asset_soft_type`;
+  </update>
+  <update id="dropSoftwareTable">
+  	DROP TABLE IF EXISTS `asset_software`;
+  </update>
+  
+  <update id="createBaseTable">
+  	CREATE TABLE if not EXISTS `asset_base` (
+  `asset_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `supplier_id` int(11) DEFAULT NULL COMMENT '供应商',
+  `type_id` int(11) NOT NULL COMMENT '资产类别',
+  `asset_case` tinyint(4) NOT NULL COMMENT '类型（业务分类）',
+  `number` varchar(64) NOT NULL COMMENT '资产编号',
+  `edit_number` varchar(64) DEFAULT NULL COMMENT '资产自编码',
+  `asset_name` varchar(64) NOT NULL COMMENT '资产名称',
+  `finance_coding` varchar(64) DEFAULT NULL COMMENT '财务编码',
+  `state` varchar(64) NOT NULL COMMENT '资产状态',
+  `unit` varchar(5) DEFAULT NULL COMMENT '计量单位',
+  `asset_count` int(11) NOT NULL DEFAULT '0' COMMENT '数量',
+  `price` double(15,2) NOT NULL DEFAULT '0.00' COMMENT '单价',
+  `buy_time` datetime DEFAULT NULL COMMENT '购买日期',
+  `picture` varchar(1024) DEFAULT NULL COMMENT '图片',
+  `can_use` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1可用',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`asset_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='资产基础信息';
+  </update>
+  <update id="createBaseFixedTable">
+  	CREATE TABLE if not EXISTS `asset_base_fixed` (
+  `own_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'own_id',
+  `asset_id` int(11) NOT NULL COMMENT 'foreign_id',
+  `version` varchar(64) DEFAULT NULL COMMENT '型号/规格',
+  `producer` varchar(64) DEFAULT NULL COMMENT '生产厂家',
+  `plant_time` datetime DEFAULT NULL COMMENT '出厂日期',
+  `plant_number` varchar(64) DEFAULT NULL COMMENT '出厂编号',
+  `age_limit` int(11) DEFAULT NULL COMMENT '使用年限',
+  PRIMARY KEY (`own_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='固定资产';
+  </update>
+  <update id="createBaseFlowTable">
+  	CREATE TABLE if not EXISTS `asset_base_flow` (
+  `own_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'own_id',
+  `asset_id` int(11) NOT NULL COMMENT 'foreign_id',
+  `specification` varchar(64) DEFAULT NULL COMMENT '规格',
+  PRIMARY KEY (`own_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='易耗品';
+  </update>
+  <update id="createBaseInteTable">
+  	CREATE TABLE if not EXISTS `asset_base_inte` (
+  `own_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'own_id',
+  `asset_id` int(11) NOT NULL COMMENT 'foreign_id',
+  `cpu_info` varchar(518) DEFAULT NULL COMMENT 'CPU信息',
+  `cpu_sn` varchar(518) DEFAULT NULL COMMENT 'CPU序号',
+  `memory_info` varchar(518) DEFAULT NULL COMMENT '内存信息',
+  `memory_sn` varchar(518) DEFAULT NULL COMMENT '内存序号',
+  `hard_disk_info` varchar(518) DEFAULT NULL COMMENT '硬盘详细信息',
+  `hard_disk_sn` varchar(518) DEFAULT NULL COMMENT '硬盘序号',
+  `mainboard_info` varchar(518) DEFAULT NULL COMMENT '主板',
+  `mainboard_sn` varchar(518) DEFAULT NULL COMMENT '主板序号',
+  `ip_addr` varchar(518) DEFAULT NULL COMMENT 'IP地址',
+  `mac` varchar(518) DEFAULT NULL COMMENT 'mac地址',
+  `display_card_info` varchar(518) DEFAULT NULL COMMENT '显卡',
+  `os_desc` varchar(518) DEFAULT NULL COMMENT '操作系统',
+  `age_limit` int(11) DEFAULT NULL COMMENT '使用年限',
+  PRIMARY KEY (`own_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='IT资产';
+  </update>
+  <update id="createBaseSoftTable">
+  	CREATE TABLE if not EXISTS `asset_base_soft` (
+  `own_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'own_id',
+  `asset_id` int(11) NOT NULL COMMENT 'foreign_id',
+  `authorize_type_id` int(11) DEFAULT NULL COMMENT '授权类型(0无需授权)',
+  `mode_id` int(11) DEFAULT NULL COMMENT '软件类型',
+  `attr_id` int(11) DEFAULT NULL COMMENT '软件属性',
+  `version` varchar(518) DEFAULT NULL COMMENT '版本',
+  `overdue_time` datetime DEFAULT NULL COMMENT '过期时间',
+  `manufacturer` varchar(128) DEFAULT NULL COMMENT '厂商',
+  `manufacturer_phone` varchar(15) DEFAULT NULL COMMENT '厂商电话',
+  PRIMARY KEY (`own_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='软件资产';
+  </update>
+  <update id="createBaseSupplierTable">
+  	CREATE TABLE if not EXISTS `asset_base_supplier` (
+  `supplier_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'own_id',
+  `supplier_name` varchar(64) NOT NULL COMMENT '供应商名称',
+  `supplier_phone` varchar(15) DEFAULT NULL COMMENT '供应商电话',
+  `supplier_address` varchar(128) DEFAULT NULL COMMENT '供应商地址',
+  `supplier_memo` varchar(518) DEFAULT NULL COMMENT '备注',
+  `can_use` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1可用',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`supplier_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='供应商';
+  </update>
+  <update id="createBaseTypeTable">
+  	CREATE TABLE if not EXISTS `asset_base_type` (
+  `type_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'own_id',
+  `type_name` varchar(64) NOT NULL COMMENT '类别名称',
+  `type_memo` varchar(518) DEFAULT NULL COMMENT '备注',
+  `type_case` tinyint(4) NOT NULL COMMENT '1: 固定资产;2: 易耗品;3: IT资产;4:软件资产',
+  `can_use` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1可用',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='资产类别';
+  </update>
+  <update id="createSoftAttrTable">
+  	CREATE TABLE if not EXISTS `asset_soft_attr` (
+  `attr_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'own_id',
+  `attr_name` varchar(64) NOT NULL COMMENT '软件属性名称',
+  `attr_type` tinyint(4) NOT NULL COMMENT '0:国内;1:国外',
+  `can_use` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1可用',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`attr_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='软件属性';
+  </update>
+  <update id="createSoftAuthorizeTypeTable">
+  	CREATE TABLE if not EXISTS `asset_soft_authorize_type` (
+  `authorize_type_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'own_id',
+  `authorize_name` varchar(64) NOT NULL COMMENT '授权类型名称',
+  `only_one` tinyint(4) NOT NULL COMMENT '是否一一对应的授权，例如:1,为序列号、加密狗;0,为其他',
+  `need_count` tinyint(4) NOT NULL COMMENT '是否需要授权数量，例如:1,订阅授权;0,场地授权等不需要统计的',
+  `can_use` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1可用',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`authorize_type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='软件授权类型';
+  </update>
+  <update id="createSoftModeTable">
+  	CREATE TABLE if not EXISTS `asset_soft_mode` (
+  `mode_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'own_id',
+  `mode_name` varchar(64) NOT NULL COMMENT '软件类型名称',
+  `need_authorize` tinyint(4) NOT NULL COMMENT '是否需要授权',
+  `can_use` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1可用',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`mode_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='软件类型';
+  </update>
+  <update id="createSoftTypeTable">
+  	CREATE TABLE if not EXISTS `asset_soft_type` (
+  `software_type_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '序号',
+  `mode_id` int(11) NOT NULL COMMENT '软件类型',
+  `attr_id` int(11) NOT NULL COMMENT '软件属性',
+  `sign_name` varchar(518) NOT NULL COMMENT '标记名称',
+  `version` varchar(64) DEFAULT NULL COMMENT '软件版本',
+  `manufacturer` varchar(518) DEFAULT NULL COMMENT '厂商名称',
+  `manufacturer_phone` varchar(16) DEFAULT NULL COMMENT '厂商电话',
+  `authorize_type_id` int(11) DEFAULT NULL COMMENT '许可类型;1:序列号授权;2:加密狗授权;3:场地授权;4:订阅授权;5:租赁授权',
+  `license_time` date DEFAULT NULL COMMENT '许可期限',
+  `create_time` datetime DEFAULT NULL COMMENT '标记时间即创建时间',
+  `is_hide` tinyint(4) DEFAULT '0' COMMENT '是否隐藏。0：否；1：是',
+  `authorize_count` int(11) DEFAULT '0' COMMENT '可授权数量，需授权的软件类型超出该数量的软件为盗版',
+  `software_type_num` varchar(128) DEFAULT NULL COMMENT '软件标识编号',
+  PRIMARY KEY (`software_type_id`),
+  UNIQUE KEY `sign_name` (`sign_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='软件标识库';
+  </update>
+  <update id="createSoftwareTable">
+  	CREATE TABLE if not EXISTS `asset_software` (
+  `software_id` int(32) NOT NULL AUTO_INCREMENT,
+  `software_type_id` int(32) DEFAULT NULL COMMENT '软件标识id',
+  `inte_id` varchar(518) NOT NULL COMMENT '软件安装的电脑，对应asset_base_inte的own_id',
+  `soft_name` varchar(518) NOT NULL COMMENT '软件名称',
+  `version` varchar(64) DEFAULT NULL COMMENT '软件版本',
+  `is_hide` tinyint(4) DEFAULT '0' COMMENT '是否隐藏。0：否；1：是',
+  `is_install` tinyint(4) DEFAULT '1' COMMENT '软件使用中或卸载；1：使用中',
+  `install_date` datetime DEFAULT NULL COMMENT '软件安装时间',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`software_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='软件安装情况';
+  </update>
 </mapper>

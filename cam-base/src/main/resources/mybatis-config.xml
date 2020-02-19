@@ -3,21 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <properties resource="jdbc.properties"/>
     <!--指定日志的具体实现-->
-    <!--<settings>-->
-        <!--<setting name="logImp1" value="LOG4J"/>-->
-    <!--</settings>-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
     <!--环境配置  连接的数据库-->
-    <environments default="mysql">
-        <environment id="mysql">
+    <environments default="development">
+        <environment id="development">
             <!--指定事务管理类型 type="JDBC"指直接简单使用了JDBC的提交和回滚设置-->
             <transactionManager type="JDBC"/>
             <!--数据源配置,POOLED是JDBC连接对象的数据源连接池的实现-->
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/sam-asset?characterEncoding=utf-8&amp;useSSL=false&amp;useUnicode=true"/>
-                <property name="username" value="root"/>
-                <property name="password" value="root"/>
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
             </dataSource>
         </environment>
     </environments>
@@ -36,7 +37,6 @@
         <mapper resource="mapper/AssetSoftModeMapper.xml"/>
         <mapper resource="mapper/AssetSoftAuthorizeTypeMapper.xml"/>
     </mappers>
-    
 </configuration>
 
 
