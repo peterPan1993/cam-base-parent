@@ -13,19 +13,18 @@ import com.base.dao.AssetBaseDAO;
 import com.base.service.DataBaseService;
 
 public class DataBaseUtils {
-	private DataBaseUtils() {}
 
-	private static SqlSession session;
+	private static SqlSessionFactory factory;
 
 	public static void setConfigData(Properties properties) throws IOException {
-		if (session == null) {
-			InputStream reader = Resources.getResourceAsStream("mybatis-config.xml");
-			SqlSessionFactory factory = new SqlSessionFactoryBuilder()
-					.build(reader, properties);
-			session = factory.openSession();
-		}
+		InputStream reader = Resources.getResourceAsStream("mybatis-config.xml");
+		factory = new SqlSessionFactoryBuilder()
+				.build(reader, properties);
 	}
 	public static SqlSession getSession() throws IOException {
+		if (factory == null)
+			setConfigData(null);
+		SqlSession session = factory.openSession();
 		if (session == null)
 			throw new RuntimeException("请先设置数据库连接配置！");
         return session;

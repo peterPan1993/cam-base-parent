@@ -31,16 +31,21 @@ public class TestBase {
 //		int result = service.updateById(map, 1);
 //		System.out.println(result);
 		try {
-			//System.out.println(build(service.list(map)));
+			try {
+				System.out.println(build(service.list(null)));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			Properties properties = new Properties();  
 			properties.setProperty("jdbc.driver", "com.mysql.jdbc.Driver");
 			properties.setProperty("jdbc.url", "jdbc:mysql://127.0.0.1:3306/cam_base?characterEncoding=utf-8&amp;useSSL=false&amp;useUnicode=true");
 			properties.setProperty("jdbc.username", "root");
 			properties.setProperty("jdbc.password", "root");
-			DataBaseUtils.setConfigData(properties);
-			
-			System.out.println(DataBaseUtils.initData());
-
+//			DataBaseUtils.setConfigData(properties);
+//			
+//			System.out.println(DataBaseUtils.initData());
+			//System.out.println(1/0);
 //			System.out.println(Integer.valueOf(1) == Integer.valueOf("1"));// true
 //			Properties properties = new Properties();
 //			System.out.println(properties.setProperty("a", "2"));
@@ -49,9 +54,9 @@ public class TestBase {
 //			System.out.println(Integer.getInteger("a"));
 //			System.out.println(Boolean.getBoolean("aa"));
 	        
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//}catch(Exception e){
+		} finally {
+			
 		}
 	}
 	
